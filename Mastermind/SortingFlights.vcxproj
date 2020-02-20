@@ -147,12 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Combination.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="graph_lib\Graph.cpp" />
     <ClCompile Include="graph_lib\GUI.cpp" />
     <ClCompile Include="graph_lib\Simple_window.cpp" />
     <ClCompile Include="graph_lib\Window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyWindow.cpp" />
+    <ClCompile Include="Sign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Combination.h" />

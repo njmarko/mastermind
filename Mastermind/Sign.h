@@ -7,12 +7,25 @@
 //============================================================================
 #pragma once
 
+#include <string>
+
+using std::string;
 
 class Sign {
 
 public:
 
+	Sign(int id);
+	Sign(const Sign& other);
+	~Sign();
+
+	bool operator==(const Sign& other);
+	int get_id() const;
 
 private:
-
+	int id;
+	string name;
+	string determine_name(int id);
 };
+
+

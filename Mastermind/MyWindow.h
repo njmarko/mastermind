@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.19.2020
+// Date        : 02.20.2020
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -9,6 +9,11 @@
 
 #include "GUI.h"
 #include "Graph.h"
+#include <FL\Fl_Button.H>
+#include "Game.h"
+
+
+#include <iostream>
 
 
 #define WINDOW_W	1000
@@ -33,11 +38,6 @@ using namespace Graph_lib;
 
 class MyWindow:Window
 {
-private:
-
-	void create_fltk_elements();
-
-
 public:
 
 	MyWindow(Point xy, int width, int height, const string& title);
@@ -45,11 +45,45 @@ public:
 
 	bool wait_for_button();
 
+	void start_new_game();
+
+private:
+
+	/*Game that does all the calculations*/
+	Game game;
+
+	/*Elements that are displayed like signs and correct position indicators*/
+	vector<Shape*> shapes;
+
+	//sign buttons
+	Fl_Button* skocko;
+	Fl_Button* tref;
+	Fl_Button* pik;
+	Fl_Button* herc;
+	Fl_Button* karo;
+	Fl_Button* zvezda;
+	
+	Fl_Button* clear;
+	Fl_Button* enter;
+	Fl_Button* new_game;
+
+	static void add_sign(Fl_Widget* w, void* p);
+	static void cb_clear_guess(Fl_Widget* w, void* p);
+	static void cb_new_game(Fl_Widget* w, void* p);
+	static void cb_enter_guess(Fl_Widget* w, void* p);
+
+	void create_fltk_elements();
 
 	/**
 	*Detaches all dynamically added elements from the gui and frees the memory
 	*/
-	void clear_shapes();
+	void clear_all_shapes();
+
+	void clear_curr_guess();
+
+	void enter_curr_guess();
+
+	void add_guess_indicators();
 
 };
 
