@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Combination.cpp" />
+    <ClCompile Include="Counter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="graph_lib\Graph.cpp" />
     <ClCompile Include="graph_lib\GUI.cpp" />
@@ -155,10 +156,12 @@
     <ClCompile Include="graph_lib\Window.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyWindow.cpp" />
+    <ClCompile Include="Possibilities.cpp" />
     <ClCompile Include="Sign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Combination.h" />
+    <ClInclude Include="Counter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="graph_lib\Graph.h" />
     <ClInclude Include="graph_lib\GUI.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="graph_lib\std_lib_facilities.h" />
     <ClInclude Include="graph_lib\Window.h" />
     <ClInclude Include="MyWindow.h" />
+    <ClInclude Include="Possibilities.h" />
     <ClInclude Include="Sign.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

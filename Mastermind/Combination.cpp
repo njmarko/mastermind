@@ -1,12 +1,26 @@
+//============================================================================
+// Name        : Combination.cpp
+// Author      : Marko Njegomir sw-38-2018
+// Date        : 02.21.2020
+// Copyright   : GPLv3
+// Description : Implementation of the Combination class
+//============================================================================
+
 #include "Combination.h"
 
 Combination::Combination():correct_pos(0),incorrect_pos(0)
 {
 }
 
-Combination::Combination(const Combination & other)
+Combination::Combination(const Combination & other):signs(other.signs), correct_pos(other.correct_pos),incorrect_pos(other.incorrect_pos)
 {
 }
+
+Combination::Combination(vector<Sign> signs): signs(signs), correct_pos(0),incorrect_pos(0)
+{
+}
+
+
 
 Combination::~Combination()
 {
@@ -63,6 +77,8 @@ void Combination::evaluate_positions(const Combination & other)
 {
 	vector<int> guess_hist = make_histogram();
 	vector<int> correct_hist = other.make_histogram();
+	correct_pos = 0;
+	incorrect_pos = 0;
 
 	for (int i = 0; i < 6;++i) {
 		if (guess_hist[i] <= correct_hist[i]) {

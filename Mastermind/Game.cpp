@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.20.2020
+// Date        : 02.21.2020
 // Copyright   : GPLv3
 // Description : Implementation of the Game class
 //============================================================================
@@ -9,7 +9,7 @@
 
 #include "Game.h"
 
-Game::Game():game_ended(false)
+Game::Game():game_ended(false),possibilities(num_signs,num_positions)
 {
 	srand((unsigned)time(0));
 	for (int i = 0; i < 4; ++i) {
@@ -23,7 +23,7 @@ Game::~Game()
 
 bool Game::add_sign(Signs s)
 {
-	if (guess_comb.get_size()<num_signs && !game_ended)
+	if (guess_comb.get_size()<num_positions && !game_ended)
 	{
 		guess_comb.add_sign(s);
 		return true;
@@ -80,5 +80,15 @@ bool Game::is_finished() const
 void Game::finish_game()
 {
 	game_ended = true;
+}
+
+void Game::update_possibilities()
+{
+	possibilities.update_possibilities(guess_comb, guess_comb.get_correct_pos(), guess_comb.get_incorrect_pos());
+}
+
+unsigned int Game::get_num_possibilities() const
+{
+	return possibilities.get_num_possibilities();
 }
 

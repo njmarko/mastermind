@@ -45,6 +45,12 @@
     <ClCompile Include="Combination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Possibilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Counter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph_lib\Graph.h">
@@ -75,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Possibilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Counter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

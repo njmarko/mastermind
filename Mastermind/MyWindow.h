@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.20.2020
+// Date        : 02.21.2020
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -12,9 +12,7 @@
 #include <FL\Fl_Button.H>
 #include "Game.h"
 
-
 #include <iostream>
-
 
 #define WINDOW_W	1000
 #define WINDOW_H	800
@@ -85,5 +83,6 @@ private:
 
 	void add_guess_indicators();
 
+	void add_remaining_num();
 };
 

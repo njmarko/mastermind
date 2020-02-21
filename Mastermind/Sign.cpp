@@ -1,4 +1,17 @@
+//============================================================================
+// Name        : Sign.cpp
+// Author      : Marko Njegomir sw-38-2018
+// Date        : 02.21.2020
+// Copyright   : GPLv3
+// Description : Implementation of the Sign class
+//============================================================================
+
+
 #include "Sign.h"
+
+Sign::Sign():id(-1),name("Unknown")
+{
+}
 
 Sign::Sign(int id): id(id), name(determine_name(id))
 {

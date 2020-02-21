@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.20.2020
+// Date        : 02.21.2020
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -145,16 +145,18 @@ void MyWindow::clear_curr_guess()
 
 void MyWindow::enter_curr_guess()
 {
-	if (game.is_finished() || game.get_curr_col() < num_signs) {
+	if (game.is_finished() || game.get_curr_col() < num_positions) {
 		return;
 	}
 	if (game.evaluate_guess()) {
+		add_remaining_num();
 		add_guess_indicators();
 		game.enter_guess();
 		game.finish_game();
 		
 	}
 	else {
+		add_remaining_num();
 		add_guess_indicators();
 		game.enter_guess();
 		if (game.get_curr_row() >= num_rows) {
@@ -184,4 +186,13 @@ void MyWindow::add_guess_indicators()
 	}
 }
 
-
+void MyWindow::add_remaining_num()
+{
+	game.update_possibilities();
+	unsigned int remaining = game.get_num_possibilities();
+	Text* txt = new Text(Point(20, 50 + 100 * game.get_curr_row() - 1), to_string(remaining));
+	txt->set_color(Color::black);
+	attach(*txt);
+	shapes.push_back(txt);
+	redraw();
+}

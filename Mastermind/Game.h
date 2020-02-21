@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.20.2020
+// Date        : 02.21.2020
 // Copyright   : GPLv3
 // Description : Class that represents a main game
 //============================================================================
@@ -11,11 +11,14 @@
 #include "Combination.h"
 #include <random>
 #include <ctime>
+#include "Possibilities.h"
 
 using std::vector;
 
 #define num_rows 6
-#define num_signs 4
+#define num_positions 4
+#define num_signs 6
+
 
 class Game {
 
@@ -38,12 +41,13 @@ public:
 	int get_incorrect_pos() const;
 	bool is_finished() const;
 	void finish_game();
-
+	void update_possibilities();
+	unsigned int get_num_possibilities() const;
 private:
 	Combination correct_comb;
 	Combination guess_comb;
 	vector<Combination> played_combs;
 	bool game_ended;
-
+	Possibilities possibilities;
 
 };
