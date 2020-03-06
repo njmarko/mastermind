@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 02.24.2020
 // Copyright   : GPLv3
 // Description : Class that represents a main game
 //============================================================================
@@ -25,7 +25,7 @@ class Game {
 public:
 	enum Signs {
 		/*Enumeration for the types of signs*/
-		SKOCKO = 0, TREF, PIK, HERC, KARO, ZVEZDA
+		SMILEY = 0, CLUB, SPADE, HEARTH, DIAMOND, STAR
 	};
 
 	Game();

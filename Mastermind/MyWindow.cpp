@@ -1,30 +1,19 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 02.26.2020
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
 #pragma once
 
 #include "MyWindow.h"
+ 
 
-
-void MyWindow::add_sign(Fl_Widget * w, void * p)
+void MyWindow::cb_add_sign(Fl_Widget * w, void * p)
 {
-
 	MyWindow &win = reference_to<MyWindow>(w->parent());
-
-	if (win.game.add_sign(Game::Signs((int)p)))
-	{
-
-		Text* txt = new Text(Point(50 + 100 * win.game.get_curr_col(), 50 + 100*win.game.get_curr_row()), to_string((int)p));
-		txt->set_color(Color::black);
-		reference_to<MyWindow>(w->parent()).attach(*txt);
-		win.shapes.push_back(txt);
-		w->parent()->redraw();
-	}
-
+	reference_to<MyWindow>(w->parent()).add_sign(Game::Signs((int)p));
 }
 
 void MyWindow::cb_clear_guess(Fl_Widget * w, void * p)
@@ -46,28 +35,44 @@ void MyWindow::create_fltk_elements()
 {
 	begin();
 	//signs
-	skocko = new Fl_Button(100,650,100,50,"Skocko");
-	tref = new Fl_Button(200, 650, 100, 50, "Tref");
-	pik = new Fl_Button(300, 650, 100, 50, "Pik");
-	herc = new Fl_Button(100, 700, 100, 50, "Herc");
-	karo = new Fl_Button(200, 700, 100, 50, "Karo");
-	zvezda = new Fl_Button(300, 700, 100, 50, "Zvezda");
-	
-	//callback functions for signs
-	skocko->callback(add_sign, (void*)Game::SKOCKO);
-	tref->callback(add_sign, (void*)Game::TREF);
-	pik->callback(add_sign, (void*)Game::PIK);
-	herc->callback(add_sign, (void*)Game::HERC);
-	karo->callback(add_sign, (void*)Game::KARO);
-	zvezda->callback(add_sign, (void*)Game::ZVEZDA);
-	
-	clear = new Fl_Button(500, 700, 100, 50, "Clear");
-	enter = new Fl_Button(500, 650, 100, 50, "Enter");
-	new_game = new Fl_Button(700, 650, 100, 100, "New Game");
+	btn_smiley = new Fl_Button(BUTTON_COL,BUTTON_ROW,BUTTON_W, BUTTON_H);
+	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
+	btn_spade = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW, BUTTON_W, BUTTON_H);
+	btn_hearth = new Fl_Button(BUTTON_COL, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
+	btn_diamon = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
+	btn_star = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 
-	clear->callback(cb_clear_guess);
-	enter->callback(cb_enter_guess);
-	new_game->callback(cb_new_game);
+	//removes borders from the sign buttons
+	btn_smiley->box(FL_NO_BOX);
+	btn_club->box(FL_NO_BOX);
+	btn_spade->box(FL_NO_BOX);
+	btn_hearth->box(FL_NO_BOX);
+	btn_diamon->box(FL_NO_BOX);
+	btn_star->box(FL_NO_BOX);
+
+	//callback functions for signs
+	btn_smiley->callback(cb_add_sign, (void*)Game::SMILEY);
+	btn_club->callback(cb_add_sign, (void*)Game::CLUB);
+	btn_spade->callback(cb_add_sign, (void*)Game::SPADE);
+	btn_hearth->callback(cb_add_sign, (void*)Game::HEARTH);
+	btn_diamon->callback(cb_add_sign, (void*)Game::DIAMOND);
+	btn_star->callback(cb_add_sign, (void*)Game::STAR);
+	
+	//sets images for the sign buttons
+	btn_star->image(png_star);
+	btn_club->image(png_club);
+	btn_diamon->image(png_diamond);
+	btn_hearth->image(png_hearth);
+	btn_spade->image(png_spade);
+	btn_smiley->image(png_smiley);
+	
+	btn_clear = new Fl_Button(500, 700, 100, 50, "Clear");
+	btn_enter = new Fl_Button(500, 650, 100, 50, "Enter");
+	btn_new_game = new Fl_Button(700, 650, 100, 100, "New Game");
+
+	btn_clear->callback(cb_clear_guess);
+	btn_enter->callback(cb_enter_guess);
+	btn_new_game->callback(cb_new_game);
 
 	end();
 }
@@ -75,35 +80,54 @@ void MyWindow::create_fltk_elements()
 MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	Window(xy, width, height, title),
 	game(),
-	skocko(nullptr),
-	tref(nullptr),
-	pik(nullptr),
-	herc(nullptr),
-	karo(nullptr),
-	zvezda(nullptr),
-	clear(nullptr),
-	enter(nullptr),
-	new_game(nullptr)
+	btn_smiley(nullptr),
+	btn_club(nullptr),
+	btn_spade(nullptr),
+	btn_hearth(nullptr),
+	btn_diamon(nullptr),
+	btn_star(nullptr),
+	btn_clear(nullptr),
+	btn_enter(nullptr),
+	btn_new_game(nullptr),
+	png_club(new Fl_PNG_Image("../resources/club.png")),
+	png_diamond(new Fl_PNG_Image("../resources/diamond.png")),
+	png_hearth(new Fl_PNG_Image("../resources/hearth.png")),
+	png_smiley(new Fl_PNG_Image("../resources/smiley.png")),
+	png_spade(new Fl_PNG_Image("../resources/spade.png")),
+	png_star(new Fl_PNG_Image("../resources/star.png")),
+	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
+	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png"))
 {
 	create_fltk_elements();
+
 }
 
 
 MyWindow::~MyWindow()
 {
 
-	delete skocko;
-	delete tref;
-	delete pik;
-	delete herc;
-	delete karo;
-	delete zvezda;
+	delete btn_smiley;
+	delete btn_club;
+	delete btn_spade;
+	delete btn_hearth;
+	delete btn_diamon;
+	delete btn_star;
 
-	delete clear;
-	delete enter;
-	delete new_game;
+	delete btn_clear;
+	delete btn_enter;
+	delete btn_new_game;
 
-	clear_all_shapes();
+	delete png_smiley;
+	delete png_club;
+	delete png_spade;
+	delete png_hearth;
+	delete png_diamond;
+	delete png_star;
+	
+	delete png_correct;
+	delete png_incorrect;
+
+	clear_screen();
 }
 
 bool MyWindow::wait_for_button()
@@ -115,16 +139,23 @@ bool MyWindow::wait_for_button()
 
 void MyWindow::start_new_game()
 {
-	clear_all_shapes();
+	clear_screen();
 	game = Game();
 }
 
-void MyWindow::clear_all_shapes()
+void MyWindow::clear_screen()
 {
-	for (int i = 0; i < shapes.size();++i) {
+	for (int i = 0; i < elements.size();++i) {
+
+		Fl::delete_widget(elements[i]);
+	}
+
+	for (int i = 0; i < shapes.size(); ++i) {
 		detach(*shapes[i]);
 		delete shapes[i];
 	}
+
+	elements.clear();
 	shapes.clear();
 	redraw();
 }
@@ -133,14 +164,10 @@ void MyWindow::clear_curr_guess()
 {
 	for (int i = 0; i < game.get_curr_col(); i++)
 	{
-		detach(*shapes[shapes.size()- 1]);
-		Shape * s = shapes[shapes.size() - 1];
-		shapes.pop_back();
-		delete s;
-	}
+		Fl::delete_widget(elements[elements.size() - 1]);
+		elements.pop_back();
+	}	
 	game.clear_guess();
-	
-	redraw();
 }
 
 void MyWindow::enter_curr_guess()
@@ -163,26 +190,32 @@ void MyWindow::enter_curr_guess()
 			game.finish_game();
 		}
 	}
-
 }
 
 void MyWindow::add_guess_indicators()
 {
 	for (int i = 0; i < game.get_correct_pos(); ++i){
 
-		Text* txt = new Text(Point(500 + 100 * i, 50 + 100 * game.get_curr_row()-1), "Tacan");
-		txt->set_color(Color::black);
-		attach(*txt);
-		shapes.push_back(txt);
-		redraw();
+		begin();
+		//this is a way to add new images
+		//fl_register_images();
+		//Fl_PNG_Image* p1 = new Fl_PNG_Image("ind_correct_s.png");
+		
+		Fl_Box* b1 = new Fl_Box(500 + 100 * i, 32+100 * game.get_curr_row(), 64, 64);
+		elements.push_back(b1);
+		b1->image(png_correct);
+		end();
+
 	}
 
 	for (int i = game.get_correct_pos(); i < game.get_incorrect_pos() + game.get_correct_pos();++i) {
-		Text* txt = new Text(Point(500 + 100 * i, 50 + 100 * game.get_curr_row()),"Pogresan"s);
-		txt->set_color(Color::black);
-		attach(*txt);
-		shapes.push_back(txt);
-		redraw();
+
+		begin();
+		Fl_Box* b2 = new Fl_Box(500 + 100 * i,32 + 100 * game.get_curr_row(), 64, 64);
+		b2->image(png_incorrect);
+		elements.push_back(b2);
+		end();
+
 	}
 }
 
@@ -190,9 +223,56 @@ void MyWindow::add_remaining_num()
 {
 	game.update_possibilities();
 	unsigned int remaining = game.get_num_possibilities();
+
 	Text* txt = new Text(Point(20, 50 + 100 * game.get_curr_row() - 1), to_string(remaining));
 	txt->set_color(Color::black);
 	attach(*txt);
 	shapes.push_back(txt);
 	redraw();
+	
+}
+
+void MyWindow::add_sign(Game::Signs sign_type)
+{
+	//game class checks if the sign can be added, and if adding is successfull, it should be displayed imediately
+	if (game.add_sign(sign_type)) {
+		begin();
+		Fl_Box* box1 = new Fl_Box(50 + 100 * game.get_curr_col(), 50 + 100 * game.get_curr_row(), 32, 32);
+		end();
+		switch (sign_type)
+		{
+		case Game::SMILEY:
+			box1->image(png_smiley);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::CLUB:
+			box1->image(png_club);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::SPADE:
+			box1->image(png_spade);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::HEARTH:
+			box1->image(png_hearth);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::DIAMOND:
+			box1->image(png_diamond);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::STAR:
+			box1->image(png_star);
+			elements.push_back(box1);
+			redraw();
+			break;
+		default:
+			break;
+		}
+	}
 }

@@ -1,40 +1,44 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 02.26.2020
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
 #pragma once
 
+//#include <FL\Fl_Shared_Image.H> //allows for rescaling of images. Also keeps the original copy
+
 #include "GUI.h"
 #include "Graph.h"
 #include <FL\Fl_Button.H>
 #include "Game.h"
+#include <FL\Fl_PNG_Image.H>
+#include <FL\Fl_Image.H>
+#include <FL\Fl_Box.H>
+#include <FL\Fl_Widget.H>
+#include <FL\Fl.H>
 
-#include <iostream>
 
 #define WINDOW_W	1000
 #define WINDOW_H	800
 #define W_OFFSET	20
 #define H_OFFSET	20
-#define BUTTON_W	150
-#define BUTTON_H	20
-#define INPUT_W		150
-#define INPUT_H		20
-#define ROW_START	200
-#define COL_START	200
-#define TXT_W		200
-#define TXT_H		20
-#define CIRCLE_R	10
-#define RECT_W		20
-#define RECT_H		20
+
+#define BUTTON_W	100
+#define BUTTON_H	50
+#define BUTTON_ROW	650
+#define BUTTON_COL  100
+
+#define SIGN_ROW_START	200
+#define SIGN_COL_START	200
+
 #define SPACING		50
 
 using namespace std;
 using namespace Graph_lib;
 
-class MyWindow:Window
+class MyWindow:public Window
 {
 public:
 
@@ -53,19 +57,34 @@ private:
 	/*Elements that are displayed like signs and correct position indicators*/
 	vector<Shape*> shapes;
 
-	//sign buttons
-	Fl_Button* skocko;
-	Fl_Button* tref;
-	Fl_Button* pik;
-	Fl_Button* herc;
-	Fl_Button* karo;
-	Fl_Button* zvezda;
-	
-	Fl_Button* clear;
-	Fl_Button* enter;
-	Fl_Button* new_game;
+	vector<Fl_Widget*> elements;
 
-	static void add_sign(Fl_Widget* w, void* p);
+
+	//sign buttons
+	Fl_Button* btn_smiley;
+	Fl_Button* btn_club;
+	Fl_Button* btn_spade;
+	Fl_Button* btn_hearth;
+	Fl_Button* btn_diamon;
+	Fl_Button* btn_star;
+	
+	//
+	Fl_Button* btn_clear;
+	Fl_Button* btn_enter;
+	Fl_Button* btn_new_game;
+
+	Fl_PNG_Image* png_smiley;
+	Fl_PNG_Image* png_club;
+	Fl_PNG_Image* png_spade;
+	Fl_PNG_Image* png_hearth;
+	Fl_PNG_Image* png_diamond;
+	Fl_PNG_Image* png_star;
+
+	Fl_PNG_Image* png_correct;
+	Fl_PNG_Image* png_incorrect;
+	
+
+	static void cb_add_sign(Fl_Widget* w, void* p);
 	static void cb_clear_guess(Fl_Widget* w, void* p);
 	static void cb_new_game(Fl_Widget* w, void* p);
 	static void cb_enter_guess(Fl_Widget* w, void* p);
@@ -75,7 +94,7 @@ private:
 	/**
 	*Detaches all dynamically added elements from the gui and frees the memory
 	*/
-	void clear_all_shapes();
+	void clear_screen();
 
 	void clear_curr_guess();
 
@@ -84,5 +103,9 @@ private:
 	void add_guess_indicators();
 
 	void add_remaining_num();
+
+	void add_sign(Game::Signs type);
+
+
 };
 
