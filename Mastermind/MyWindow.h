@@ -30,10 +30,17 @@
 #define BUTTON_ROW	650
 #define BUTTON_COL  100
 
-#define SIGN_ROW_START	200
-#define SIGN_COL_START	200
+#define SIGN_ROW_START	50
+#define SIGN_COL_START	32
+#define TXT_ROW_START 85
+#define TXT_COL_START 50
 
-#define SPACING		50
+#define IND_ROW_START 50
+#define IND_COL_START 300
+
+#define BOX_SIZE 64
+
+#define SPACING	50
 
 using namespace std;
 using namespace Graph_lib;

@@ -201,7 +201,7 @@ void MyWindow::add_guess_indicators()
 		//fl_register_images();
 		//Fl_PNG_Image* p1 = new Fl_PNG_Image("ind_correct_s.png");
 		
-		Fl_Box* b1 = new Fl_Box(500 + 100 * i, 32+100 * game.get_curr_row(), 64, 64);
+		Fl_Box* b1 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START+ SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		elements.push_back(b1);
 		b1->image(png_correct);
 		end();
@@ -211,7 +211,7 @@ void MyWindow::add_guess_indicators()
 	for (int i = game.get_correct_pos(); i < game.get_incorrect_pos() + game.get_correct_pos();++i) {
 
 		begin();
-		Fl_Box* b2 = new Fl_Box(500 + 100 * i,32 + 100 * game.get_curr_row(), 64, 64);
+		Fl_Box* b2 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START + SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		b2->image(png_incorrect);
 		elements.push_back(b2);
 		end();
@@ -224,7 +224,7 @@ void MyWindow::add_remaining_num()
 	game.update_possibilities();
 	unsigned int remaining = game.get_num_possibilities();
 
-	Text* txt = new Text(Point(20, 50 + 100 * game.get_curr_row() - 1), to_string(remaining));
+	Text* txt = new Text(Point(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1), to_string(remaining));
 	txt->set_color(Color::black);
 	attach(*txt);
 	shapes.push_back(txt);
@@ -237,7 +237,7 @@ void MyWindow::add_sign(Game::Signs sign_type)
 	//game class checks if the sign can be added, and if adding is successfull, it should be displayed imediately
 	if (game.add_sign(sign_type)) {
 		begin();
-		Fl_Box* box1 = new Fl_Box(50 + 100 * game.get_curr_col(), 50 + 100 * game.get_curr_row(), 32, 32);
+		Fl_Box* box1 = new Fl_Box(SIGN_COL_START + SPACING * game.get_curr_col(), SIGN_ROW_START + SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		end();
 		switch (sign_type)
 		{
