@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Combination.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Class that represents a combination consisting of signs
 //============================================================================
@@ -26,6 +26,7 @@ public:
 	void clear_comb();
 	int get_correct_pos() const;
 	int get_incorrect_pos() const;
+	vector<Sign> get_signs() const;
 
 private:
 	vector<Sign> signs;

@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.24.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Class that represents a main game
 //============================================================================
@@ -43,6 +43,7 @@ public:
 	void finish_game();
 	void update_possibilities();
 	unsigned int get_num_possibilities() const;
+	Combination get_correct_comb() const;
 private:
 	Combination correct_comb;
 	Combination guess_comb;

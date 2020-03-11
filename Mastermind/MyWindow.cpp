@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.26.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -66,9 +66,9 @@ void MyWindow::create_fltk_elements()
 	btn_spade->image(png_spade);
 	btn_smiley->image(png_smiley);
 	
-	btn_clear = new Fl_Button(500, 700, 100, 50, "Clear");
-	btn_enter = new Fl_Button(500, 650, 100, 50, "Enter");
-	btn_new_game = new Fl_Button(700, 650, 100, 100, "New Game");
+	btn_enter = new Fl_Button(400, 500, 100, 50, "Enter");
+	btn_clear = new Fl_Button(400, 550, 100, 50, "Clear");
+	btn_new_game = new Fl_Button(500, 500, 100, 100, "New Game");
 
 	btn_clear->callback(cb_clear_guess);
 	btn_enter->callback(cb_enter_guess);
@@ -180,6 +180,7 @@ void MyWindow::enter_curr_guess()
 		add_guess_indicators();
 		game.enter_guess();
 		game.finish_game();
+		add_correct_comb();
 		
 	}
 	else {
@@ -188,6 +189,7 @@ void MyWindow::enter_curr_guess()
 		game.enter_guess();
 		if (game.get_curr_row() >= num_rows) {
 			game.finish_game();
+			add_correct_comb();
 		}
 	}
 }
@@ -272,6 +274,55 @@ void MyWindow::add_sign(Game::Signs sign_type)
 			redraw();
 			break;
 		default:
+			delete box1;
+			break;
+		}
+	}
+}
+
+void MyWindow::add_correct_comb()
+{
+	for (int  i = 0; i < game.get_correct_comb().get_size(); i++)
+	{
+		begin();
+		Fl_Box* box1 = new Fl_Box(SIGN_COL_START + SPACING * (i+1), SIGN_CORRECT_START, BOX_SIZE, BOX_SIZE);
+		end();
+		Sign s = game.get_correct_comb().get_signs()[i];
+
+		switch (Game::Signs(s.get_id()))
+		{
+		case Game::SMILEY:
+			box1->image(png_smiley);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::CLUB:
+			box1->image(png_club);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::SPADE:
+			box1->image(png_spade);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::HEARTH:
+			box1->image(png_hearth);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::DIAMOND:
+			box1->image(png_diamond);
+			elements.push_back(box1);
+			redraw();
+			break;
+		case Game::STAR:
+			box1->image(png_star);
+			elements.push_back(box1);
+			redraw();
+			break;
+		default:
+			delete box1;
 			break;
 		}
 	}

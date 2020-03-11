@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.26.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -20,15 +20,15 @@
 #include <FL\Fl.H>
 
 
-#define WINDOW_W	1000
-#define WINDOW_H	800
+#define WINDOW_W	650
+#define WINDOW_H	650
 #define W_OFFSET	20
 #define H_OFFSET	20
 
 #define BUTTON_W	100
 #define BUTTON_H	50
-#define BUTTON_ROW	650
-#define BUTTON_COL  100
+#define BUTTON_ROW	500
+#define BUTTON_COL  32
 
 #define SIGN_ROW_START	50
 #define SIGN_COL_START	32
@@ -37,6 +37,8 @@
 
 #define IND_ROW_START 50
 #define IND_COL_START 300
+
+#define SIGN_CORRECT_START 400
 
 #define BOX_SIZE 64
 
@@ -113,6 +115,6 @@ private:
 
 	void add_sign(Game::Signs type);
 
-
+	void add_correct_comb();
 };
 

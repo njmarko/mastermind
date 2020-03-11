@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Implementation of the Game class
 //============================================================================
@@ -90,5 +90,10 @@ void Game::update_possibilities()
 unsigned int Game::get_num_possibilities() const
 {
 	return possibilities.get_num_possibilities();
+}
+
+Combination Game::get_correct_comb() const
+{
+	return correct_comb;
 }
 

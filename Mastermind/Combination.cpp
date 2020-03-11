@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Combination.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.21.2020
+// Date        : 03.11.2020
 // Copyright   : GPLv3
 // Description : Implementation of the Combination class
 //============================================================================
@@ -62,6 +62,11 @@ int Combination::get_correct_pos() const
 int Combination::get_incorrect_pos() const
 {
 	return incorrect_pos;
+}
+
+vector<Sign> Combination::get_signs() const
+{
+	return vector<Sign>(signs);
 }
 
 vector<int> Combination::make_histogram() const
