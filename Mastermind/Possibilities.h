@@ -20,7 +20,7 @@ public:
 	Possibilities(unsigned int num_signs, unsigned int num_positions);
 	~Possibilities();
 
-	void update_possibilities(Combination& guess, unsigned int correct_pos, unsigned int incorrect_pos);
+	void update_possibilities(const Combination& guess, unsigned int correct_pos, unsigned int incorrect_pos);
 	unsigned int get_num_possibilities() const;
 private:
 	list<Combination> all_possibilites;

@@ -27,7 +27,7 @@ Possibilities::~Possibilities()
 {
 }
 
-void Possibilities::update_possibilities(Combination& guess, unsigned int correct_pos, unsigned int incorrect_pos)
+void Possibilities::update_possibilities(const Combination& guess, unsigned int correct_pos, unsigned int incorrect_pos)
 {
 	list<Combination>::iterator it = all_possibilites.begin();
 	while (it != all_possibilites.end()) {

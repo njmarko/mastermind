@@ -31,7 +31,7 @@ public:
 	Game();
 	~Game();
 
-	bool add_sign(Signs s);
+	bool add_sign(const Signs& s);
 	int get_curr_row() const;
 	int get_curr_col() const;
 	void clear_guess();

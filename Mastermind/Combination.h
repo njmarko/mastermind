@@ -18,7 +18,7 @@ class Combination {
 public:
 	Combination();
 	Combination(const Combination& other);
-	Combination(vector<Sign> signs);
+	Combination(const vector<Sign>& signs);
 	~Combination();
 	void add_sign(int id);
 	bool compare_combinations(const Combination& other);

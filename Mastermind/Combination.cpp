@@ -16,7 +16,7 @@ Combination::Combination(const Combination & other):signs(other.signs), correct_
 {
 }
 
-Combination::Combination(vector<Sign> signs): signs(signs), correct_pos(0),incorrect_pos(0)
+Combination::Combination(const vector<Sign>& signs): signs(signs), correct_pos(0),incorrect_pos(0)
 {
 }
 

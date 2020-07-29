@@ -21,7 +21,7 @@ Game::~Game()
 {
 }
 
-bool Game::add_sign(Signs s)
+bool Game::add_sign(const Signs& s)
 {
 	if (guess_comb.get_size()<num_positions && !game_ended)
 	{
