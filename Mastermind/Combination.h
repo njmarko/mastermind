@@ -13,6 +13,12 @@
 
 using std::vector;
 
+
+/**
+* Class that represents one combination in the game. It consists of signs
+* that are placed in order inside a vector. These can be any suported signs
+* and there is no restriction on how many of them can be used in one combination.
+*/
 class Combination {
 
 public:
