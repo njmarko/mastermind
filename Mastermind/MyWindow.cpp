@@ -65,10 +65,23 @@ void MyWindow::create_fltk_elements()
 	btn_hearth->image(png_hearth);
 	btn_spade->image(png_spade);
 	btn_smiley->image(png_smiley);
+
+	//adds the keyboard shortcuts for the sign buttons
+	btn_smiley->shortcut('q');
+	btn_club->shortcut('w');
+	btn_spade->shortcut('e');
+	btn_hearth->shortcut('a');
+	btn_diamon->shortcut('s');
+	btn_star->shortcut('d');
 	
 	btn_enter = new Fl_Button(400, 500, 100, 50, "Enter");
 	btn_clear = new Fl_Button(400, 550, 100, 50, "Clear");
 	btn_new_game = new Fl_Button(500, 500, 100, 100, "New Game");
+
+	//adds the keyboard shortcuts for the rest of the buttons
+	btn_enter->shortcut(FL_KEYBOARD | FL_Enter);
+	btn_clear->shortcut(FL_KEYBOARD | FL_BackSpace);
+	btn_new_game->shortcut('n');
 
 	btn_clear->callback(cb_clear_guess);
 	btn_enter->callback(cb_enter_guess);
