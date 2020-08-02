@@ -35,7 +35,7 @@ void MyWindow::create_fltk_elements()
 {
 	begin();
 	//signs
-	btn_smiley = new Fl_Button(BUTTON_COL,BUTTON_ROW,BUTTON_W, BUTTON_H);
+	btn_smiley = new Fl_Button(BUTTON_COL, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_spade = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_hearth = new Fl_Button(BUTTON_COL, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
@@ -145,6 +145,8 @@ MyWindow::~MyWindow()
 
 bool MyWindow::wait_for_button()
 {
+	//for the alternatinve handling of the actions, check the Simple_window::wait_for_button() 
+	//function implementation in the SimpleWindow.cpp
 	show();
 	Fl::run();
 	return true;
