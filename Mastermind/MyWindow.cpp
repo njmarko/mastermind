@@ -187,14 +187,13 @@ void MyWindow::clear_curr_guess()
 
 void MyWindow::enter_curr_guess()
 {
-	if (game.is_finished() || game.get_curr_col() < num_positions) {
+	if (game.is_finished() || game.get_curr_col() < NUM_POSITIONS) {
 		return;
 	}
 	if (game.evaluate_guess()) {
 		add_remaining_num();
 		add_guess_indicators();
 		game.enter_guess();
-		game.finish_game();
 		add_correct_comb();
 		
 	}
@@ -202,8 +201,7 @@ void MyWindow::enter_curr_guess()
 		add_remaining_num();
 		add_guess_indicators();
 		game.enter_guess();
-		if (game.get_curr_row() >= num_rows) {
-			game.finish_game();
+		if (game.is_finished()) {
 			add_correct_comb();
 		}
 	}

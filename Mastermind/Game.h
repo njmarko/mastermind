@@ -12,23 +12,35 @@
 #include <random>
 #include <ctime>
 #include "Possibilities.h"
+#include <iostream>
 
 using std::vector;
 
 /**
 * Number of guesses the user can attempt.
 */
-#define num_rows 6
+#define NUM_ROWS 6
 
 /**
 * Defines how many signs can be played in one combination.
 */
-#define num_positions 4
+#define NUM_POSITIONS 4
 
 /**
 * Number of different types of signs that can be played.
 */
-#define num_signs 6
+#define NUM_SIGNS 6
+
+/**
+* Number of points at the start of the game.
+*/
+#define POINTS_START 15
+
+/**
+* Number of points that will be deduced from the total number of points
+* after each incorrect guess when there is only one possible combination remaining.
+*/
+#define POINTS_DECREMENT 3
 
 
 /**
@@ -126,6 +138,12 @@ public:
 	* @returns Combination correct combination that has to be guessed.
 	*/
 	Combination get_correct_comb() const;
+
+	/**
+	* Updates the points if the number of remaining combinations is 1.
+	* Points are deduced based on the POINTS_DECREMENT that is predefined.
+	*/
+	void update_points();
 private:
 	/**
 	* Correct combination that has to be guessed.
@@ -151,5 +169,15 @@ private:
 	* List of all the remaining possibilities that is updated after each guess.
 	*/
 	Possibilities possibilities;
+
+	/**
+	* Number of points that will be won at the moment the correct guess is submited.
+	*/
+	int points;
+
+	/**
+	* Indicator for when only one possible combination is left.
+	*/
+	bool one_comb_remaining;
 
 };

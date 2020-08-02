@@ -9,7 +9,7 @@
 
 #include "Game.h"
 
-Game::Game():game_ended(false),possibilities(num_signs,num_positions)
+Game::Game():game_ended(false),possibilities(NUM_SIGNS,NUM_POSITIONS),points(POINTS_START),one_comb_remaining(false)
 {
 	srand((unsigned)time(0));
 	for (int i = 0; i < 4; ++i) {
@@ -23,7 +23,7 @@ Game::~Game()
 
 bool Game::add_sign(const Signs& s)
 {
-	if (guess_comb.get_size()<num_positions && !game_ended)
+	if (guess_comb.get_size()<NUM_POSITIONS && !game_ended)
 	{
 		guess_comb.add_sign(s);
 		return true;
@@ -54,7 +54,24 @@ void Game::clear_guess()
 void Game::enter_guess()
 {
 	played_combs.push_back(guess_comb);
-	guess_comb = Combination();
+	// if the correct combination is guessed.
+	if (evaluate_guess()) {
+		finish_game();
+	}
+	else {
+		guess_comb = Combination();
+		// if maximum number of guesses were entered, finish the game
+		if (get_curr_row() >= NUM_ROWS) {
+			finish_game();
+		}
+		else {
+			update_points();
+		}
+	}
+	if (get_num_possibilities()==1)
+	{
+		one_comb_remaining = true;
+	}
 }
 
 bool Game::evaluate_guess()
@@ -95,5 +112,12 @@ unsigned int Game::get_num_possibilities() const
 Combination Game::get_correct_comb() const
 {
 	return correct_comb;
+}
+
+void Game::update_points()
+{
+	if (one_comb_remaining && !is_finished()) {
+		points -= POINTS_DECREMENT;
+	}
 }
 
