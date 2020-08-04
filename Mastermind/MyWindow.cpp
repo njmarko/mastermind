@@ -74,18 +74,23 @@ void MyWindow::create_fltk_elements()
 	btn_diamon->shortcut('s');
 	btn_star->shortcut('d');
 	
+
+	//adds game controll buttons
 	btn_enter = new Fl_Button(400, 500, 100, 50, "Enter");
 	btn_clear = new Fl_Button(400, 550, 100, 50, "Clear");
 	btn_new_game = new Fl_Button(500, 500, 100, 100, "New Game");
 
-	//adds the keyboard shortcuts for the rest of the buttons
+	//adds the keyboard shortcuts for the game controll buttons
 	btn_enter->shortcut(FL_KEYBOARD | FL_Enter);
 	btn_clear->shortcut(FL_KEYBOARD | FL_BackSpace);
 	btn_new_game->shortcut('n');
 
+	//adds the callback functions for game controll buttons
 	btn_clear->callback(cb_clear_guess);
 	btn_enter->callback(cb_enter_guess);
 	btn_new_game->callback(cb_new_game);
+
+	box_points = new Fl_Box(400, 400, 100, 50, strdup(to_string(game.get_points()).data()));
 
 	end();
 }
@@ -109,7 +114,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_spade(new Fl_PNG_Image("../resources/spade.png")),
 	png_star(new Fl_PNG_Image("../resources/star.png")),
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
-	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png"))
+	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
+	box_points(nullptr)
 {
 	create_fltk_elements();
 
@@ -139,6 +145,8 @@ MyWindow::~MyWindow()
 	
 	delete png_correct;
 	delete png_incorrect;
+
+	delete box_points;
 
 	clear_screen();
 }
@@ -339,4 +347,9 @@ void MyWindow::add_correct_comb()
 			break;
 		}
 	}
+}
+
+void MyWindow::refresh_points()
+{
+
 }

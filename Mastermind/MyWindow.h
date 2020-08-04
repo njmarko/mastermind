@@ -18,6 +18,7 @@
 #include <FL\Fl_Box.H>
 #include <FL\Fl_Widget.H>
 #include <FL\Fl.H>
+#include <string>
 
 /* Width of the main window.*/
 #define WINDOW_W	650
@@ -126,6 +127,7 @@ private:
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
 	
+	Fl_Box* box_points;
 
 	//callback functions for the buttons
 	static void cb_add_sign(Fl_Widget* w, void* p);
@@ -178,5 +180,10 @@ private:
 	* Adds the signs for the correct combination to the screen.
 	*/
 	void add_correct_comb();
+
+	/**
+	* Updates the number of points the player can win if he guesses the combintation at this point.
+	*/
+	void refresh_points();
 };
 

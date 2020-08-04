@@ -121,3 +121,8 @@ void Game::update_points()
 	}
 }
 
+int Game::get_points() const
+{
+	return points;
+}
+

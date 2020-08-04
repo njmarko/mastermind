@@ -144,6 +144,12 @@ public:
 	* Points are deduced based on the POINTS_DECREMENT that is predefined.
 	*/
 	void update_points();
+
+	/**
+	* Getter for the current points the player can win in the game
+	* @returns int points that can be won if the combination is guessed
+	*/
+	int get_points() const;
 private:
 	/**
 	* Correct combination that has to be guessed.
