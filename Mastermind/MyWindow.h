@@ -127,7 +127,7 @@ private:
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
 	
-	Fl_Box* box_points;
+	Text* txt_points;
 
 	//callback functions for the buttons
 	static void cb_add_sign(Fl_Widget* w, void* p);

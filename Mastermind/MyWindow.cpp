@@ -90,7 +90,10 @@ void MyWindow::create_fltk_elements()
 	btn_enter->callback(cb_enter_guess);
 	btn_new_game->callback(cb_new_game);
 
-	box_points = new Fl_Box(400, 400, 100, 50, strdup(to_string(game.get_points()).data()));
+	//adds the number of points player can win
+	txt_points = new Text(Point(450, 450), to_string(game.get_points()));
+	txt_points->set_color(Color::black);
+	attach(*txt_points);
 
 	end();
 }
@@ -114,8 +117,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_spade(new Fl_PNG_Image("../resources/spade.png")),
 	png_star(new Fl_PNG_Image("../resources/star.png")),
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
-	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
-	box_points(nullptr)
+	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png"))
 {
 	create_fltk_elements();
 
@@ -146,7 +148,7 @@ MyWindow::~MyWindow()
 	delete png_correct;
 	delete png_incorrect;
 
-	delete box_points;
+	delete txt_points;
 
 	clear_screen();
 }
@@ -162,8 +164,8 @@ bool MyWindow::wait_for_button()
 
 void MyWindow::start_new_game()
 {
-	clear_screen();
 	game = Game();
+	clear_screen();
 }
 
 void MyWindow::clear_screen()
@@ -180,6 +182,7 @@ void MyWindow::clear_screen()
 
 	elements.clear();
 	shapes.clear();
+	refresh_points();
 	redraw();
 }
 
@@ -213,6 +216,7 @@ void MyWindow::enter_curr_guess()
 			add_correct_comb();
 		}
 	}
+	refresh_points();
 }
 
 void MyWindow::add_guess_indicators()
@@ -351,5 +355,5 @@ void MyWindow::add_correct_comb()
 
 void MyWindow::refresh_points()
 {
-
+	txt_points->set_label(to_string(game.get_points()));
 }
