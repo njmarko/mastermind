@@ -95,6 +95,9 @@ void MyWindow::create_fltk_elements()
 	txt_points->set_color(Color::black);
 	attach(*txt_points);
 
+	box_guess_guaranteed = new Fl_Box(500, 425, 50, 50);
+	box_guess_guaranteed->image(png_incorrect);
+
 	end();
 }
 
@@ -150,6 +153,8 @@ MyWindow::~MyWindow()
 
 	delete txt_points;
 
+	delete box_guess_guaranteed;
+
 	clear_screen();
 }
 
@@ -183,6 +188,7 @@ void MyWindow::clear_screen()
 	elements.clear();
 	shapes.clear();
 	refresh_points();
+	refresh_guess_guaranteed();
 	redraw();
 }
 
@@ -217,6 +223,7 @@ void MyWindow::enter_curr_guess()
 		}
 	}
 	refresh_points();
+	refresh_guess_guaranteed();
 }
 
 void MyWindow::add_guess_indicators()
@@ -256,7 +263,6 @@ void MyWindow::add_remaining_num()
 	attach(*txt);
 	shapes.push_back(txt);
 	redraw();
-	
 }
 
 void MyWindow::add_sign(Game::Signs sign_type)
@@ -357,3 +363,14 @@ void MyWindow::refresh_points()
 {
 	txt_points->set_label(to_string(game.get_points()));
 }
+
+void MyWindow::refresh_guess_guaranteed()
+{
+	if (game.get_num_possibilities() == 1) {
+		box_guess_guaranteed->image(png_correct);
+	}
+	else {
+		box_guess_guaranteed->image(png_incorrect);
+	}
+}
+

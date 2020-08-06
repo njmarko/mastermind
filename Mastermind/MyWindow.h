@@ -127,7 +127,11 @@ private:
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
 	
+	//number of points that can be won
 	Text* txt_points;
+
+	//one guess remaining indicator for when the guess is guaranteed
+	Fl_Box* box_guess_guaranteed;
 
 	//callback functions for the buttons
 	static void cb_add_sign(Fl_Widget* w, void* p);
@@ -185,5 +189,12 @@ private:
 	* Updates the number of points the player can win if he guesses the combintation at this point.
 	*/
 	void refresh_points();
+
+	/**
+	* Updates the indicator for when the guess is guaranteed. 
+	* If the number of remaining combinations is 1, the guess is guaranteed.
+	* Otherwise the user can't be shure what is the correct combinations that has to be played.
+	*/
+	void refresh_guess_guaranteed();
 };
 
