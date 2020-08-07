@@ -76,9 +76,9 @@ void MyWindow::create_fltk_elements()
 	
 
 	//adds game controll buttons
-	btn_enter = new Fl_Button(400, 500, 100, 50, "Enter");
-	btn_clear = new Fl_Button(400, 550, 100, 50, "Clear");
-	btn_new_game = new Fl_Button(500, 500, 100, 100, "New Game");
+	btn_enter = new Fl_Button(CTRL_BTN_COL_START, CTRL_BTN_ROW_START, CTRL_BTN_W, CTRL_BTN_H, "Enter");
+	btn_clear = new Fl_Button(CTRL_BTN_COL_START, CTRL_BTN_ROW_START + CTRL_BTN_H, CTRL_BTN_W, CTRL_BTN_H, "Clear");
+	btn_new_game = new Fl_Button(CTRL_BTN_COL_START + CTRL_BTN_W, CTRL_BTN_ROW_START, CTRL_BTN_W, CTRL_BTN_H * 2, "New Game");
 
 	//adds the keyboard shortcuts for the game controll buttons
 	btn_enter->shortcut(FL_KEYBOARD | FL_Enter);

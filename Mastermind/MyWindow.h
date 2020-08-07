@@ -21,7 +21,7 @@
 #include <string>
 
 /* Width of the main window.*/
-#define WINDOW_W	650
+#define WINDOW_W	550
 /* Height of the main window.*/
 #define WINDOW_H	650
 /* Width offset for all the elements. [unused]*/
@@ -31,7 +31,7 @@
 
 
 /* Width of the button.*/
-#define BUTTON_W	100
+#define BUTTON_W	75
 /* Height of the button.*/
 #define BUTTON_H	50
 /* Y axis starting position for the buttons.*/
@@ -54,6 +54,16 @@
 #define IND_ROW_START 50
 /* X axis starting position for the correctness indicators.*/
 #define IND_COL_START 300
+
+/* Y axis starting position for the controll buttons.*/
+#define CTRL_BTN_ROW_START 500
+/* X axis starting position for the controll buttons.*/
+#define CTRL_BTN_COL_START 300
+/* X axis starting position for the controll buttons.*/
+#define CTRL_BTN_W 100
+/* Y axis starting position for the controll buttons.*/
+#define CTRL_BTN_H 50
+
 
 
 /* Y axis position for the correct combination.*/
