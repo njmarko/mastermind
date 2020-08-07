@@ -13,7 +13,7 @@ using namespace std;
 void main(int argc, char* argv[])
 {
 
-	MyWindow simple(Point(100,100),WINDOW_W,WINDOW_H,"Mastermind");
+	MyWindow simple(scr_middle_placement,WINDOW_W,WINDOW_H,"Mastermind");
 	
 	simple.wait_for_button();
 }

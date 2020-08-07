@@ -20,6 +20,7 @@
 #include <FL\Fl.H>
 #include <string>
 
+
 /* Width of the main window.*/
 #define WINDOW_W	550
 /* Height of the main window.*/
@@ -29,6 +30,7 @@
 /* Height offset for all the elements. [unused]*/
 #define H_OFFSET	20
 
+const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (Fl::h() - WINDOW_H) / 2);
 
 /* Width of the button.*/
 #define BUTTON_W	75
@@ -43,11 +45,11 @@
 /* Y axis starting position for the guesses.*/
 #define SIGN_ROW_START	50
 /* X axis starting position for the guesses.*/
-#define SIGN_COL_START	32
+#define SIGN_COL_START	2
 /* Y axis starting position for the text that diplays the number of remaining combinations.*/
 #define TXT_ROW_START 85
 /* X axis starting position for the text that diplays the number of remaining combinations.*/
-#define TXT_COL_START 50
+#define TXT_COL_START 20
 
 
 /* Y axis starting position for the correctness indicators.*/
@@ -59,12 +61,10 @@
 #define CTRL_BTN_ROW_START 500
 /* X axis starting position for the controll buttons.*/
 #define CTRL_BTN_COL_START 300
-/* X axis starting position for the controll buttons.*/
+/* Width of the controll buttons.*/
 #define CTRL_BTN_W 100
-/* Y axis starting position for the controll buttons.*/
+/* Height of the controll buttons.*/
 #define CTRL_BTN_H 50
-
-
 
 /* Y axis position for the correct combination.*/
 #define SIGN_CORRECT_START 400 
