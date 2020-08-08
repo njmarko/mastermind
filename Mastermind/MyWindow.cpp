@@ -90,11 +90,11 @@ void MyWindow::create_fltk_elements()
 	btn_new_game->callback(cb_new_game);
 
 	//adds the number of points player can win
-	txt_points = new Text(Point(450, 450), to_string(game.get_points()));
+	txt_points = new Text(Point(TXT_POINTS_COL, TXT_POINTS_ROW), to_string(game.get_points()));
 	txt_points->set_color(Color::black);
 	attach(*txt_points);
 
-	box_guess_guaranteed = new Fl_Box(500, 425, 50, 50);
+	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_incorrect);
 
 	end();
@@ -122,7 +122,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png"))
 {
 	create_fltk_elements();
-
+	resizable(NULL);
+	size_range(width, height, width, height, width, height, 0);
 }
 
 
@@ -315,7 +316,7 @@ void MyWindow::add_correct_comb()
 	for (int  i = 0; i < game.get_correct_comb().get_size(); i++)
 	{
 		begin();
-		Fl_Box* box1 = new Fl_Box(SIGN_COL_START + SPACING * (i+1), SIGN_CORRECT_START, BOX_SIZE, BOX_SIZE);
+		Fl_Box* box1 = new Fl_Box(SIGN_COL_START + SPACING * (i+1), SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 		end();
 		Sign s = game.get_correct_comb().get_signs()[i];
 

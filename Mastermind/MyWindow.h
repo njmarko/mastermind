@@ -39,7 +39,7 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /* Y axis starting position for the buttons.*/
 #define BUTTON_ROW	500
 /* X axis starting position for the buttons.*/
-#define BUTTON_COL  32
+#define BUTTON_COL  47
 
 
 /* Y axis starting position for the guesses.*/
@@ -60,14 +60,20 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /* Y axis starting position for the controll buttons.*/
 #define CTRL_BTN_ROW_START 500
 /* X axis starting position for the controll buttons.*/
-#define CTRL_BTN_COL_START 300
+#define CTRL_BTN_COL_START 317
 /* Width of the controll buttons.*/
 #define CTRL_BTN_W 100
 /* Height of the controll buttons.*/
 #define CTRL_BTN_H 50
 
 /* Y axis position for the correct combination.*/
-#define SIGN_CORRECT_START 400 
+#define SIGN_CORRECT_ROW_START 400 
+
+/* Y axis position for the number of points.*/
+#define TXT_POINTS_COL 450
+
+/* X axis position for the number of points.*/
+#define TXT_POINTS_ROW 437
 
 /*Size of the square box for the gui elements. Used for heigh and width.*/
 #define BOX_SIZE 64
