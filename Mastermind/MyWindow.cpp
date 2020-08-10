@@ -119,7 +119,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_spade(new Fl_PNG_Image("../resources/spade.png")),
 	png_star(new Fl_PNG_Image("../resources/star.png")),
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
-	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png"))
+	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
+	num_comb_displayed(false)
 {
 	create_fltk_elements();
 	resizable(NULL);
@@ -260,9 +261,11 @@ void MyWindow::add_remaining_num()
 
 	Text* txt = new Text(Point(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1), to_string(remaining));
 	txt->set_color(Color::black);
-	attach(*txt);
 	shapes.push_back(txt);
-	redraw();
+	if (num_comb_displayed) {
+		attach(*txt);
+		redraw();
+	}
 }
 
 void MyWindow::add_sign(Game::Signs sign_type)

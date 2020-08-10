@@ -24,7 +24,7 @@
 /* Width of the main window.*/
 #define WINDOW_W	550
 /* Height of the main window.*/
-#define WINDOW_H	650
+#define WINDOW_H	625
 /* Width offset for all the elements. [unused]*/
 #define W_OFFSET	20
 /* Height offset for all the elements. [unused]*/
@@ -154,6 +154,12 @@ private:
 	static void cb_clear_guess(Fl_Widget* w, void* p);
 	static void cb_new_game(Fl_Widget* w, void* p);
 	static void cb_enter_guess(Fl_Widget* w, void* p);
+
+	/**
+	* Value that determines if nubmer of remaining combinations 
+	* will be shown after each guess.
+	*/
+	bool num_comb_displayed;
 
 	/**
 	* Creates all the buttons on the screen.
