@@ -135,20 +135,20 @@ private:
 	vector<Fl_Widget*> elements;
 
 
-	//sign buttons
+	//sign buttons.
 	Fl_Button* btn_smiley;
 	Fl_Button* btn_club;
 	Fl_Button* btn_spade;
 	Fl_Button* btn_hearth;
-	Fl_Button* btn_diamon;
+	Fl_Button* btn_diamond;
 	Fl_Button* btn_star;
 	
-	//controll buttons
+	//controll buttons.
 	Fl_Button* btn_clear;
 	Fl_Button* btn_enter;
 	Fl_Button* btn_new_game;
 
-	//images for the signs
+	//images for the signs.
 	Fl_PNG_Image* png_smiley;
 	Fl_PNG_Image* png_club;
 	Fl_PNG_Image* png_spade;
@@ -156,14 +156,14 @@ private:
 	Fl_PNG_Image* png_diamond;
 	Fl_PNG_Image* png_star;
 
-	//indicators for the correctness of the guess
+	//indicators for the correctness of the guess.
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
 	
 	//number of points that can be won
 	Fl_Box* txt_points;
 
-	//one guess remaining indicator for when the guess is guaranteed
+	//one guess remaining indicator for when the guess is guaranteed.
 	Fl_Box* box_guess_guaranteed;
 
 	//callback functions for the buttons
@@ -179,9 +179,14 @@ private:
 	bool num_comb_displayed;
 
 	/**
-	* Value that determines if the points will be shown
+	* Value that determines if the points will be shown.
 	*/
 	bool points_displayed;
+
+	/**
+	* Value that determines if the "guess guaranteed" indicator will be shown.
+	*/
+	bool guess_guaranteed_displayed;
 
 	/**
 	* Creates all the buttons on the screen.

@@ -39,7 +39,7 @@ void MyWindow::create_fltk_elements()
 	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_spade = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_hearth = new Fl_Button(BUTTON_COL, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
-	btn_diamon = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
+	btn_diamond = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 	btn_star = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 
 	//removes borders from the sign buttons
@@ -47,7 +47,7 @@ void MyWindow::create_fltk_elements()
 	btn_club->box(FL_NO_BOX);
 	btn_spade->box(FL_NO_BOX);
 	btn_hearth->box(FL_NO_BOX);
-	btn_diamon->box(FL_NO_BOX);
+	btn_diamond->box(FL_NO_BOX);
 	btn_star->box(FL_NO_BOX);
 
 	//callback functions for signs
@@ -55,13 +55,13 @@ void MyWindow::create_fltk_elements()
 	btn_club->callback(cb_add_sign, (void*)Game::CLUB);
 	btn_spade->callback(cb_add_sign, (void*)Game::SPADE);
 	btn_hearth->callback(cb_add_sign, (void*)Game::HEARTH);
-	btn_diamon->callback(cb_add_sign, (void*)Game::DIAMOND);
+	btn_diamond->callback(cb_add_sign, (void*)Game::DIAMOND);
 	btn_star->callback(cb_add_sign, (void*)Game::STAR);
 	
 	//sets images for the sign buttons
 	btn_star->image(png_star);
 	btn_club->image(png_club);
-	btn_diamon->image(png_diamond);
+	btn_diamond->image(png_diamond);
 	btn_hearth->image(png_hearth);
 	btn_spade->image(png_spade);
 	btn_smiley->image(png_smiley);
@@ -71,7 +71,7 @@ void MyWindow::create_fltk_elements()
 	btn_club->shortcut('w');
 	btn_spade->shortcut('e');
 	btn_hearth->shortcut('a');
-	btn_diamon->shortcut('s');
+	btn_diamond->shortcut('s');
 	btn_star->shortcut('d');
 
 	//tooltips that display hotkeys for signs. copy_tooltip is used to copy the string from the temporary object
@@ -79,7 +79,7 @@ void MyWindow::create_fltk_elements()
 	btn_club->copy_tooltip(fl_shortcut_label(btn_club->shortcut()));
 	btn_spade->copy_tooltip(fl_shortcut_label(btn_spade->shortcut()));
 	btn_hearth->copy_tooltip(fl_shortcut_label(btn_hearth->shortcut()));
-	btn_diamon->copy_tooltip(fl_shortcut_label(btn_diamon->shortcut()));
+	btn_diamond->copy_tooltip(fl_shortcut_label(btn_diamond->shortcut()));
 	btn_star->copy_tooltip(fl_shortcut_label(btn_star->shortcut()));
 	
 	//adds game controll buttons
@@ -112,6 +112,10 @@ void MyWindow::create_fltk_elements()
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_incorrect);
+	if (!guess_guaranteed_displayed)
+	{
+		box_guess_guaranteed->hide();
+	}
 
 	end();
 }
@@ -123,7 +127,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	btn_club(nullptr),
 	btn_spade(nullptr),
 	btn_hearth(nullptr),
-	btn_diamon(nullptr),
+	btn_diamond(nullptr),
 	btn_star(nullptr),
 	btn_clear(nullptr),
 	btn_enter(nullptr),
@@ -152,7 +156,7 @@ MyWindow::~MyWindow()
 	delete btn_club;
 	delete btn_spade;
 	delete btn_hearth;
-	delete btn_diamon;
+	delete btn_diamond;
 	delete btn_star;
 
 	delete btn_clear;
