@@ -74,13 +74,13 @@ void MyWindow::create_fltk_elements()
 	btn_diamon->shortcut('s');
 	btn_star->shortcut('d');
 
-	//tooltips that display hotkeys for signs
-	btn_smiley->tooltip(fl_shortcut_label(btn_smiley->shortcut()));
-	btn_club->tooltip(fl_shortcut_label(btn_club->shortcut()));
-	btn_spade->tooltip(fl_shortcut_label(btn_spade->shortcut()));
-	btn_hearth->tooltip(fl_shortcut_label(btn_hearth->shortcut()));
-	btn_diamon->tooltip(fl_shortcut_label(btn_diamon->shortcut()));
-	btn_star->tooltip(fl_shortcut_label(btn_star->shortcut()));
+	//tooltips that display hotkeys for signs. copy_tooltip is used to copy the string from the temporary object
+	btn_smiley->copy_tooltip(fl_shortcut_label(btn_smiley->shortcut()));
+	btn_club->copy_tooltip(fl_shortcut_label(btn_club->shortcut()));
+	btn_spade->copy_tooltip(fl_shortcut_label(btn_spade->shortcut()));
+	btn_hearth->copy_tooltip(fl_shortcut_label(btn_hearth->shortcut()));
+	btn_diamon->copy_tooltip(fl_shortcut_label(btn_diamon->shortcut()));
+	btn_star->copy_tooltip(fl_shortcut_label(btn_star->shortcut()));
 	
 	//adds game controll buttons
 	btn_enter = new Fl_Button(CTRL_BTN_COL_START, CTRL_BTN_ROW_START, CTRL_BTN_W, CTRL_BTN_H, "Enter");
@@ -91,6 +91,11 @@ void MyWindow::create_fltk_elements()
 	btn_enter->shortcut(FL_KEYBOARD | FL_Enter);
 	btn_clear->shortcut(FL_KEYBOARD | FL_BackSpace);
 	btn_new_game->shortcut('n');
+
+	//tooltips that display hotkeys for controll buttons. copy_tooltip is used to copy the string from the temporary object
+	btn_enter->copy_tooltip(fl_shortcut_label(btn_enter->shortcut()));
+	btn_clear->copy_tooltip(fl_shortcut_label(btn_clear->shortcut()));
+	btn_new_game->copy_tooltip(fl_shortcut_label(btn_new_game->shortcut()));
 
 	//adds the callback functions for game controll buttons
 	btn_clear->callback(cb_clear_guess);
