@@ -103,11 +103,11 @@ void MyWindow::create_fltk_elements()
 	btn_new_game->callback(cb_new_game);
 
 	//adds the number of points player can win
-	txt_points = new Text(Point(TXT_POINTS_COL, TXT_POINTS_ROW), to_string(game.get_points()));
-	txt_points->set_color(Color::black);
-	if (points_displayed)
+	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
+	txt_points->copy_label(to_string(game.get_points()).c_str());
+	if (!points_displayed)
 	{
-		attach(*txt_points);
+		txt_points->hide();
 	}
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
@@ -381,7 +381,7 @@ void MyWindow::add_correct_comb()
 
 void MyWindow::refresh_points()
 {
-	txt_points->set_label(to_string(game.get_points()));
+	txt_points->copy_label(to_string(game.get_points()).c_str());
 }
 
 void MyWindow::refresh_guess_guaranteed()

@@ -73,7 +73,7 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 #define TXT_POINTS_COL 450
 
 /* X axis position for the number of points.*/
-#define TXT_POINTS_ROW 437
+#define TXT_POINTS_ROW 400
 
 /*Size of the square box for the gui elements. Used for heigh and width.*/
 #define BOX_SIZE 64
@@ -144,7 +144,7 @@ private:
 	Fl_PNG_Image* png_incorrect;
 	
 	//number of points that can be won
-	Text* txt_points;
+	Fl_Box* txt_points;
 
 	//one guess remaining indicator for when the guess is guaranteed
 	Fl_Box* box_guess_guaranteed;
