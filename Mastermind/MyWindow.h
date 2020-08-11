@@ -47,9 +47,9 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /* X axis starting position for the guesses.*/
 #define SIGN_COL_START	2
 /* Y axis starting position for the text that diplays the number of remaining combinations.*/
-#define TXT_ROW_START 85
+#define TXT_ROW_START 50
 /* X axis starting position for the text that diplays the number of remaining combinations.*/
-#define TXT_COL_START 20
+#define TXT_COL_START 5
 
 
 /* Y axis starting position for the correctness indicators.*/

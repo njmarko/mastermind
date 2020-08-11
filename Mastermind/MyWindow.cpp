@@ -276,13 +276,23 @@ void MyWindow::add_remaining_num()
 	game.update_possibilities();
 	unsigned int remaining = game.get_num_possibilities();
 
-	Text* txt = new Text(Point(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1), to_string(remaining));
-	txt->set_color(Color::black);
-	shapes.push_back(txt);
-	if (num_comb_displayed) {
-		attach(*txt);
-		redraw();
+	/*Alternative way to display the possibilities using the Text shape from graph lib*/
+	//Text* txt = new Text(Point(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1), to_string(remaining));
+	//txt->set_color(Color::black);
+	//shapes.push_back(txt);
+	//if (num_comb_displayed) { 
+	//	attach(*txt);
+	//	redraw();
+	//}
+
+	begin();
+	Fl_Box* txt = new Fl_Box(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1, BOX_SIZE, BOX_SIZE);
+	txt->copy_label(to_string(remaining).c_str());
+	elements.push_back(txt);
+	if (!num_comb_displayed) {
+		txt->hide();
 	}
+	end();
 }
 
 void MyWindow::add_sign(Game::Signs sign_type)
