@@ -194,7 +194,6 @@ void MyWindow::start_new_game()
 void MyWindow::clear_screen()
 {
 	for (int i = 0; i < elements.size();++i) {
-
 		Fl::delete_widget(elements[i]);
 	}
 
@@ -202,9 +201,9 @@ void MyWindow::clear_screen()
 		detach(*shapes[i]);
 		delete shapes[i];
 	}
+	shapes.clear();
 
 	elements.clear();
-	shapes.clear();
 	refresh_points();
 	refresh_guess_guaranteed();
 	redraw();
@@ -256,6 +255,7 @@ void MyWindow::add_guess_indicators()
 		Fl_Box* b1 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START+ SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		elements.push_back(b1);
 		b1->image(png_correct);
+		b1->redraw();
 		end();
 
 	}
@@ -266,6 +266,7 @@ void MyWindow::add_guess_indicators()
 		Fl_Box* b2 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START + SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		b2->image(png_incorrect);
 		elements.push_back(b2);
+		b2->redraw();
 		end();
 
 	}
@@ -279,7 +280,7 @@ void MyWindow::add_remaining_num()
 	/*Alternative way to display the possibilities using the Text shape from graph lib*/
 	//Text* txt = new Text(Point(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1), to_string(remaining));
 	//txt->set_color(Color::black);
-	//shapes.push_back(txt);
+	//shapes.push_back(txt); //this collection has to be created and has to be empties when clearing the screen for this implmentation to work
 	//if (num_comb_displayed) { 
 	//	attach(*txt);
 	//	redraw();
@@ -307,32 +308,32 @@ void MyWindow::add_sign(Game::Signs sign_type)
 		case Game::SMILEY:
 			box1->image(png_smiley);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::CLUB:
 			box1->image(png_club);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::SPADE:
 			box1->image(png_spade);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::HEARTH:
 			box1->image(png_hearth);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::DIAMOND:
 			box1->image(png_diamond);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::STAR:
 			box1->image(png_star);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		default:
 			delete box1;
@@ -355,32 +356,32 @@ void MyWindow::add_correct_comb()
 		case Game::SMILEY:
 			box1->image(png_smiley);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::CLUB:
 			box1->image(png_club);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::SPADE:
 			box1->image(png_spade);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::HEARTH:
 			box1->image(png_hearth);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::DIAMOND:
 			box1->image(png_diamond);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		case Game::STAR:
 			box1->image(png_star);
 			elements.push_back(box1);
-			redraw();
+			box1->redraw();
 			break;
 		default:
 			delete box1;
@@ -392,6 +393,7 @@ void MyWindow::add_correct_comb()
 void MyWindow::refresh_points()
 {
 	txt_points->copy_label(to_string(game.get_points()).c_str());
+	txt_points->redraw();
 }
 
 void MyWindow::refresh_guess_guaranteed()
@@ -402,5 +404,6 @@ void MyWindow::refresh_guess_guaranteed()
 	else {
 		box_guess_guaranteed->image(png_incorrect);
 	}
+	box_guess_guaranteed->redraw();
 }
 

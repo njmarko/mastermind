@@ -30,6 +30,7 @@
 /* Height offset for all the elements. [unused]*/
 #define H_OFFSET	20
 
+/* Point that represents the midle point of the screen where the window should be placed.*/
 const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (Fl::h() - WINDOW_H) / 2);
 
 /* Width of the button.*/
@@ -86,21 +87,37 @@ using namespace Graph_lib;
 
 /**
 * Basic window that will display all the elements needed to play the game.
+* Notes about implementation:
+*	Redraw individual elements whenever possible instead of redrawing the whole screen to reduce flickering.
+*	Add dynamically allocated elements to the apropriate container so they can be deleted when clearing the screen.
 */
 class MyWindow:public Window
 {
 public:
 
+	/**
+	* Constructor with screen dimensions and the title.
+	* @param xy Point that represents the coordinates where the window will be displayed.
+	* @param width of the window.
+	* @param height of the window.
+	* @param title that will be displayed at the top of the window
+	*/
 	MyWindow(Point xy, int width, int height, const string& title);
+
+	/**
+	* Destructor that deletes the dynamically allocated elements that were created at the start of the program;
+	* It also calls clear screen function that deletes all the dynamically allocated elements that were created
+	* during the execution of the program.
+	*/
 	~MyWindow();
 
-	/*
+	/**
 	* Function that shows the window and runs the current application.
 	*/
 	bool wait_for_button();
 
 
-	/*
+	/**
 	* Clears the dynamically allocated elements such as signs and indicators that were used in the previous game,
 	* and creates the new game instance that can be played in the now clean window.
 	*/
@@ -111,7 +128,7 @@ private:
 	/*Game that does all the calculations.*/
 	Game game;
 
-	/*Elements that are displayed like signs and correct position indicators.*/
+	/*If Shapes from GraphLib are used, they should be placed here for easier cleanup.*/
 	vector<Shape*> shapes;
 
 	/*Elements that are dynamically created during the game.*/
