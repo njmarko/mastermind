@@ -162,6 +162,11 @@ private:
 	bool num_comb_displayed;
 
 	/**
+	* Value that determines if the points will be shown
+	*/
+	bool points_displayed;
+
+	/**
 	* Creates all the buttons on the screen.
 	*/
 	void create_fltk_elements();

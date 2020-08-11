@@ -73,6 +73,14 @@ void MyWindow::create_fltk_elements()
 	btn_hearth->shortcut('a');
 	btn_diamon->shortcut('s');
 	btn_star->shortcut('d');
+
+	//tooltips that display hotkeys for signs
+	btn_smiley->tooltip(fl_shortcut_label(btn_smiley->shortcut()));
+	btn_club->tooltip(fl_shortcut_label(btn_club->shortcut()));
+	btn_spade->tooltip(fl_shortcut_label(btn_spade->shortcut()));
+	btn_hearth->tooltip(fl_shortcut_label(btn_hearth->shortcut()));
+	btn_diamon->tooltip(fl_shortcut_label(btn_diamon->shortcut()));
+	btn_star->tooltip(fl_shortcut_label(btn_star->shortcut()));
 	
 	//adds game controll buttons
 	btn_enter = new Fl_Button(CTRL_BTN_COL_START, CTRL_BTN_ROW_START, CTRL_BTN_W, CTRL_BTN_H, "Enter");
@@ -92,7 +100,10 @@ void MyWindow::create_fltk_elements()
 	//adds the number of points player can win
 	txt_points = new Text(Point(TXT_POINTS_COL, TXT_POINTS_ROW), to_string(game.get_points()));
 	txt_points->set_color(Color::black);
-	attach(*txt_points);
+	if (points_displayed)
+	{
+		attach(*txt_points);
+	}
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_incorrect);
@@ -120,7 +131,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_star(new Fl_PNG_Image("../resources/star.png")),
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
-	num_comb_displayed(false)
+	num_comb_displayed(true),
+	points_displayed(true)
 {
 	create_fltk_elements();
 	resizable(NULL);
