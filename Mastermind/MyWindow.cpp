@@ -126,7 +126,7 @@ void MyWindow::create_fltk_elements()
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
 	txt_points->copy_label(to_string(game.get_points()).c_str());
-	txt_points->tooltip("Number of points the player can win if they guess correctly. It decreases by 5,4,3,2,1 points for each wrong guess when there is only one possible combination remaining.");
+	txt_points->tooltip("Number of points the player can win if they guess correctly. It decreases by 5,4,3,2,1 points for each wrong guess only when there is only one possible combination remaining.");
 	if (!points_displayed)
 	{
 		txt_points->hide();
@@ -298,7 +298,7 @@ void MyWindow::add_guess_indicators()
 		Fl_Box* b1 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START+ SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		elements.push_back(b1);
 		b1->image(png_correct);
-		b1->tooltip("Correct sign at the correct possition");
+		b1->tooltip("Correct sign at the correct possition.");
 		b1->redraw();
 		end();
 
@@ -309,7 +309,7 @@ void MyWindow::add_guess_indicators()
 		begin();
 		Fl_Box* b2 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START + SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		b2->image(png_incorrect);
-		b2->tooltip("Correct sign at the incorrect possition");
+		b2->tooltip("Correct sign at the incorrect possition.");
 		elements.push_back(b2);
 		b2->redraw();
 		end();
@@ -334,6 +334,7 @@ void MyWindow::add_remaining_num()
 	begin();
 	Fl_Box* txt = new Fl_Box(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1, BOX_SIZE, BOX_SIZE);
 	txt->copy_label(to_string(remaining).c_str());
+	txt->tooltip("Number of combinations remaining that can possible be correct.");
 	elements.push_back(txt);
 	combinations_remaining_numbers.push_back(txt);
 	if (!num_comb_displayed) {
