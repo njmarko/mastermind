@@ -54,6 +54,7 @@ void MyWindow::cb_guess_guaranteed(Fl_Widget * w, void *)
 void MyWindow::create_fltk_elements()
 {
 	begin();
+
 	//signs
 	btn_smiley = new Fl_Button(BUTTON_COL, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
@@ -297,6 +298,7 @@ void MyWindow::add_guess_indicators()
 		Fl_Box* b1 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START+ SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		elements.push_back(b1);
 		b1->image(png_correct);
+		b1->tooltip("Correct sign at the correct possition");
 		b1->redraw();
 		end();
 
@@ -307,6 +309,7 @@ void MyWindow::add_guess_indicators()
 		begin();
 		Fl_Box* b2 = new Fl_Box(IND_COL_START + SPACING * i, IND_ROW_START + SPACING * game.get_curr_row(), BOX_SIZE, BOX_SIZE);
 		b2->image(png_incorrect);
+		b2->tooltip("Correct sign at the incorrect possition");
 		elements.push_back(b2);
 		b2->redraw();
 		end();
@@ -349,31 +352,37 @@ void MyWindow::add_sign(Game::Signs sign_type)
 		switch (sign_type)
 		{
 		case Game::SMILEY:
+			box1->tooltip("Smiley");
 			box1->image(png_smiley);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::CLUB:
+			box1->tooltip("Club");
 			box1->image(png_club);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::SPADE:
+			box1->tooltip("Spade");
 			box1->image(png_spade);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::HEARTH:
+			box1->tooltip("Hearth");
 			box1->image(png_hearth);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::DIAMOND:
+			box1->tooltip("Diamond");
 			box1->image(png_diamond);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::STAR:
+			box1->tooltip("Star");
 			box1->image(png_star);
 			elements.push_back(box1);
 			box1->redraw();
@@ -397,31 +406,38 @@ void MyWindow::add_correct_comb()
 		switch (Game::Signs(s.get_id()))
 		{
 		case Game::SMILEY:
+			box1->tooltip("Smiley");
 			box1->image(png_smiley);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::CLUB:
+			box1->tooltip("Club");
 			box1->image(png_club);
 			elements.push_back(box1);
+
 			box1->redraw();
 			break;
 		case Game::SPADE:
+			box1->tooltip("Spade");
 			box1->image(png_spade);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::HEARTH:
+			box1->tooltip("Hearth");
 			box1->image(png_hearth);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::DIAMOND:
+			box1->tooltip("Diamond");
 			box1->image(png_diamond);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
 		case Game::STAR:
+			box1->tooltip("Star");
 			box1->image(png_star);
 			elements.push_back(box1);
 			box1->redraw();
