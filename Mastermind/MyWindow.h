@@ -18,6 +18,9 @@
 #include <FL\Fl_Box.H>
 #include <FL\Fl_Widget.H>
 #include <FL\Fl.H>
+#include <FL\Fl_Menu_Bar.H>
+#include <FL\Fl_Menu_Button.H>
+#include <FL\Fl_Menu_Item.H>
 #include <string>
 
 
@@ -166,11 +169,21 @@ private:
 	//one guess remaining indicator for when the guess is guaranteed.
 	Fl_Box* box_guess_guaranteed;
 
+	//menu bar that will have buttons with basic options listed
+	Fl_Menu_Bar* menu_bar;
+
 	//callback functions for the buttons
 	static void cb_add_sign(Fl_Widget* w, void* p);
 	static void cb_clear_guess(Fl_Widget* w, void* p);
 	static void cb_new_game(Fl_Widget* w, void* p);
 	static void cb_enter_guess(Fl_Widget* w, void* p);
+
+	/**
+	* Callback function for quitting
+	*/
+	static void cb_quit(Fl_Widget*, void *);
+
+
 
 	/**
 	* Value that determines if nubmer of remaining combinations 
@@ -187,6 +200,8 @@ private:
 	* Value that determines if the "guess guaranteed" indicator will be shown.
 	*/
 	bool guess_guaranteed_displayed;
+
+
 
 	/**
 	* Creates all the buttons on the screen.

@@ -31,6 +31,11 @@ void MyWindow::cb_enter_guess(Fl_Widget * w, void * p)
 	reference_to<MyWindow>(w->parent()).enter_curr_guess();
 }
 
+void MyWindow::cb_quit(Fl_Widget *, void *)
+{
+	exit(0);
+}
+
 void MyWindow::create_fltk_elements()
 {
 	begin();
@@ -117,6 +122,13 @@ void MyWindow::create_fltk_elements()
 		box_guess_guaranteed->hide();
 	}
 
+	//menu bar
+	menu_bar = new Fl_Menu_Bar(0, 0, WINDOW_W, 25);
+	menu_bar->add("File/New Game", FL_CTRL + 'n', cb_new_game);
+	menu_bar->add("File/Quit", FL_CTRL + 'q', cb_quit);
+	menu_bar->add("Options/Show Remaining", FL_CTRL + 's', cb_quit);
+
+
 	end();
 }
 
@@ -141,7 +153,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
 	num_comb_displayed(true),
-	points_displayed(true)
+	points_displayed(true),
+	menu_bar(nullptr)
 {
 	create_fltk_elements();
 	resizable(NULL);
