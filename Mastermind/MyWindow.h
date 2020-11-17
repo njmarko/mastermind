@@ -36,6 +36,12 @@
 /* Height of the menu bar*/
 #define MENU_H 25
 
+/* X coordinate of the menu bar*/
+#define MENU_X 0
+
+/* Y coordinate of the menu bar*/
+#define MENU_Y 0
+
 /* Point that represents the midle point of the screen where the window should be placed.*/
 const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (Fl::h() - WINDOW_H) / 2);
 

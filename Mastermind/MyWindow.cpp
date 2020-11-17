@@ -138,11 +138,12 @@ void MyWindow::create_fltk_elements()
 	}
 
 	//menu bar
-	menu_bar = new Fl_Menu_Bar(0, 0, WINDOW_W, MENU_H);
+	menu_bar = new Fl_Menu_Bar(MENU_X, MENU_Y, WINDOW_W, MENU_H);
 	menu_bar->add("File/New Game", FL_CTRL + 'n', cb_new_game);
 	menu_bar->add("File/Quit", FL_CTRL + 'q', cb_quit);
-	menu_bar->add("Options/Show Remaining", FL_CTRL + 's', cb_remaining_combs);
-
+	menu_bar->add("View/Hide Remaining Combinations", FL_CTRL + 's', cb_remaining_combs, (void*)this, FL_MENU_TOGGLE);
+	menu_bar->add("View/Hide Guess Guaranteed", FL_CTRL + 'g', cb_guess_guaranteed, (void*)this, FL_MENU_TOGGLE);
+	menu_bar->add("View/Hide Points", FL_CTRL + 'p', cb_points_displayed, (void*)this, FL_MENU_TOGGLE);
 
 	end();
 }
@@ -169,6 +170,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
 	num_comb_displayed(true),
 	points_displayed(true),
+	guess_guaranteed_displayed(true),
 	menu_bar(nullptr)
 {
 	create_fltk_elements();
@@ -204,6 +206,8 @@ MyWindow::~MyWindow()
 	delete txt_points;
 
 	delete box_guess_guaranteed;
+
+	delete menu_bar;
 
 	clear_screen();
 }
