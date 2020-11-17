@@ -61,7 +61,7 @@ class Game {
 public:
 	enum Signs {
 		/*Enumeration for the types of signs*/
-		SMILEY = 0, CLUB, SPADE, HEARTH, DIAMOND, STAR
+		SMILEY = 0, CLUB, SPADE, HEART, DIAMOND, STAR
 	};
 
 	Game();

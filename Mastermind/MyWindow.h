@@ -154,7 +154,7 @@ private:
 	Fl_Button* btn_smiley;
 	Fl_Button* btn_club;
 	Fl_Button* btn_spade;
-	Fl_Button* btn_hearth;
+	Fl_Button* btn_heart;
 	Fl_Button* btn_diamond;
 	Fl_Button* btn_star;
 	
@@ -167,7 +167,7 @@ private:
 	Fl_PNG_Image* png_smiley;
 	Fl_PNG_Image* png_club;
 	Fl_PNG_Image* png_spade;
-	Fl_PNG_Image* png_hearth;
+	Fl_PNG_Image* png_heart;
 	Fl_PNG_Image* png_diamond;
 	Fl_PNG_Image* png_star;
 

@@ -59,7 +59,7 @@ void MyWindow::create_fltk_elements()
 	btn_smiley = new Fl_Button(BUTTON_COL, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_spade = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW, BUTTON_W, BUTTON_H);
-	btn_hearth = new Fl_Button(BUTTON_COL, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
+	btn_heart = new Fl_Button(BUTTON_COL, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 	btn_diamond = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 	btn_star = new Fl_Button(BUTTON_COL + BUTTON_W * 2, BUTTON_ROW + BUTTON_H, BUTTON_W, BUTTON_H);
 
@@ -67,7 +67,7 @@ void MyWindow::create_fltk_elements()
 	btn_smiley->box(FL_NO_BOX);
 	btn_club->box(FL_NO_BOX);
 	btn_spade->box(FL_NO_BOX);
-	btn_hearth->box(FL_NO_BOX);
+	btn_heart->box(FL_NO_BOX);
 	btn_diamond->box(FL_NO_BOX);
 	btn_star->box(FL_NO_BOX);
 
@@ -75,7 +75,7 @@ void MyWindow::create_fltk_elements()
 	btn_smiley->callback(cb_add_sign, (void*)Game::SMILEY);
 	btn_club->callback(cb_add_sign, (void*)Game::CLUB);
 	btn_spade->callback(cb_add_sign, (void*)Game::SPADE);
-	btn_hearth->callback(cb_add_sign, (void*)Game::HEARTH);
+	btn_heart->callback(cb_add_sign, (void*)Game::HEART);
 	btn_diamond->callback(cb_add_sign, (void*)Game::DIAMOND);
 	btn_star->callback(cb_add_sign, (void*)Game::STAR);
 	
@@ -83,7 +83,7 @@ void MyWindow::create_fltk_elements()
 	btn_star->image(png_star);
 	btn_club->image(png_club);
 	btn_diamond->image(png_diamond);
-	btn_hearth->image(png_hearth);
+	btn_heart->image(png_heart);
 	btn_spade->image(png_spade);
 	btn_smiley->image(png_smiley);
 
@@ -91,7 +91,7 @@ void MyWindow::create_fltk_elements()
 	btn_smiley->shortcut('q');
 	btn_club->shortcut('w');
 	btn_spade->shortcut('e');
-	btn_hearth->shortcut('a');
+	btn_heart->shortcut('a');
 	btn_diamond->shortcut('s');
 	btn_star->shortcut('d');
 
@@ -99,7 +99,7 @@ void MyWindow::create_fltk_elements()
 	btn_smiley->copy_tooltip(fl_shortcut_label(btn_smiley->shortcut()));
 	btn_club->copy_tooltip(fl_shortcut_label(btn_club->shortcut()));
 	btn_spade->copy_tooltip(fl_shortcut_label(btn_spade->shortcut()));
-	btn_hearth->copy_tooltip(fl_shortcut_label(btn_hearth->shortcut()));
+	btn_heart->copy_tooltip(fl_shortcut_label(btn_heart->shortcut()));
 	btn_diamond->copy_tooltip(fl_shortcut_label(btn_diamond->shortcut()));
 	btn_star->copy_tooltip(fl_shortcut_label(btn_star->shortcut()));
 	
@@ -157,7 +157,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	btn_smiley(nullptr),
 	btn_club(nullptr),
 	btn_spade(nullptr),
-	btn_hearth(nullptr),
+	btn_heart(nullptr),
 	btn_diamond(nullptr),
 	btn_star(nullptr),
 	btn_clear(nullptr),
@@ -165,7 +165,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	btn_new_game(nullptr),
 	png_club(new Fl_PNG_Image("../resources/club.png")),
 	png_diamond(new Fl_PNG_Image("../resources/diamond.png")),
-	png_hearth(new Fl_PNG_Image("../resources/hearth.png")),
+	png_heart(new Fl_PNG_Image("../resources/heart.png")),
 	png_smiley(new Fl_PNG_Image("../resources/smiley.png")),
 	png_spade(new Fl_PNG_Image("../resources/spade.png")),
 	png_star(new Fl_PNG_Image("../resources/star.png")),
@@ -188,7 +188,7 @@ MyWindow::~MyWindow()
 	delete btn_smiley;
 	delete btn_club;
 	delete btn_spade;
-	delete btn_hearth;
+	delete btn_heart;
 	delete btn_diamond;
 	delete btn_star;
 
@@ -199,7 +199,7 @@ MyWindow::~MyWindow()
 	delete png_smiley;
 	delete png_club;
 	delete png_spade;
-	delete png_hearth;
+	delete png_heart;
 	delete png_diamond;
 	delete png_star;
 	
@@ -370,9 +370,9 @@ void MyWindow::add_sign(Game::Signs sign_type)
 			elements.push_back(box1);
 			box1->redraw();
 			break;
-		case Game::HEARTH:
-			box1->tooltip("Hearth");
-			box1->image(png_hearth);
+		case Game::HEART:
+			box1->tooltip("Heart");
+			box1->image(png_heart);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
@@ -425,9 +425,9 @@ void MyWindow::add_correct_comb()
 			elements.push_back(box1);
 			box1->redraw();
 			break;
-		case Game::HEARTH:
-			box1->tooltip("Hearth");
-			box1->image(png_hearth);
+		case Game::HEART:
+			box1->tooltip("Heart");
+			box1->image(png_heart);
 			elements.push_back(box1);
 			box1->redraw();
 			break;
