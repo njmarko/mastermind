@@ -125,6 +125,7 @@ void MyWindow::create_fltk_elements()
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
 	txt_points->copy_label(to_string(game.get_points()).c_str());
+	txt_points->tooltip("Number of points the player can win if they guess correctly. It decreases by 5,4,3,2,1 points for each wrong guess when there is only one possible combination remaining.");
 	if (!points_displayed)
 	{
 		txt_points->hide();
@@ -132,6 +133,7 @@ void MyWindow::create_fltk_elements()
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_incorrect);
+	box_guess_guaranteed->tooltip("This indicator is red if there is only one possible correct combination remaining. It is yellow when there are multiple combinations remaining that can possibly be correct.");
 	if (!guess_guaranteed_displayed)
 	{
 		box_guess_guaranteed->hide();
