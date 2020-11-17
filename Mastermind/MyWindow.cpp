@@ -326,6 +326,7 @@ void MyWindow::add_remaining_num()
 	Fl_Box* txt = new Fl_Box(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1, BOX_SIZE, BOX_SIZE);
 	txt->copy_label(to_string(remaining).c_str());
 	elements.push_back(txt);
+	combinations_remaining_numbers.push_back(txt);
 	if (!num_comb_displayed) {
 		txt->hide();
 	}
@@ -446,6 +447,16 @@ void MyWindow::refresh_guess_guaranteed()
 void MyWindow::toggle_num_combs()
 {
 	num_comb_displayed = !num_comb_displayed;
+	for each (Fl_Widget* var in combinations_remaining_numbers)
+	{
+		if (num_comb_displayed==true)
+		{
+			var->show();
+		}
+		else {
+			var->hide();
+		}	
+	}
 }
 
 void MyWindow::toggle_points_displayed()

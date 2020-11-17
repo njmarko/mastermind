@@ -146,6 +146,9 @@ private:
 	/*Elements that are dynamically created during the game.*/
 	vector<Fl_Widget*> elements;
 
+	/*Elements that are dynamically created during the game and that show the number of remaining combinations*/
+	vector<Fl_Widget*> combinations_remaining_numbers;
+
 
 	//sign buttons.
 	Fl_Button* btn_smiley;
