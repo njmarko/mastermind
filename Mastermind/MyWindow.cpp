@@ -36,6 +36,11 @@ void MyWindow::cb_quit(Fl_Widget *, void *)
 	exit(0);
 }
 
+void MyWindow::cb_remaining_combs(Fl_Widget * w, void *)
+{
+	reference_to<MyWindow>(w->parent()).toggle_num_combs();
+}
+
 void MyWindow::create_fltk_elements()
 {
 	begin();
@@ -126,7 +131,7 @@ void MyWindow::create_fltk_elements()
 	menu_bar = new Fl_Menu_Bar(0, 0, WINDOW_W, 25);
 	menu_bar->add("File/New Game", FL_CTRL + 'n', cb_new_game);
 	menu_bar->add("File/Quit", FL_CTRL + 'q', cb_quit);
-	menu_bar->add("Options/Show Remaining", FL_CTRL + 's', cb_quit);
+	menu_bar->add("Options/Show Remaining", FL_CTRL + 's', cb_remaining_combs);
 
 
 	end();
@@ -422,5 +427,10 @@ void MyWindow::refresh_guess_guaranteed()
 		box_guess_guaranteed->image(png_incorrect);
 	}
 	box_guess_guaranteed->redraw();
+}
+
+void MyWindow::toggle_num_combs()
+{
+	num_comb_displayed = !num_comb_displayed;
 }
 

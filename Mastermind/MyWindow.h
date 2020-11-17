@@ -178,12 +178,12 @@ private:
 	static void cb_new_game(Fl_Widget* w, void* p);
 	static void cb_enter_guess(Fl_Widget* w, void* p);
 
-	/**
-	* Callback function for quitting
-	*/
+	
+	//Callback function for quitting
 	static void cb_quit(Fl_Widget*, void *);
 
-
+	//callback function for toggling displaying of elements on the screen
+	static void cb_remaining_combs(Fl_Widget*, void*);
 
 	/**
 	* Value that determines if nubmer of remaining combinations 
@@ -200,8 +200,6 @@ private:
 	* Value that determines if the "guess guaranteed" indicator will be shown.
 	*/
 	bool guess_guaranteed_displayed;
-
-
 
 	/**
 	* Creates all the buttons on the screen.
@@ -260,5 +258,10 @@ private:
 	* Otherwise the user can't be shure what is the correct combinations that has to be played.
 	*/
 	void refresh_guess_guaranteed();
+
+	/**
+	* Toggles if the number of remaining combinations is shown.
+	*/
+	void toggle_num_combs();
 };
 
