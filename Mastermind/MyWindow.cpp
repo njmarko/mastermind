@@ -240,6 +240,10 @@ void MyWindow::clear_screen()
 	shapes.clear();
 
 	elements.clear();
+	// combinations_remaining_numbers can be cleared because all the items contained in it 
+	// were also already in elements, and elements Widgets were deleted.
+	combinations_remaining_numbers.clear();
+
 	refresh_points();
 	refresh_guess_guaranteed();
 	redraw();
@@ -462,10 +466,24 @@ void MyWindow::toggle_num_combs()
 void MyWindow::toggle_points_displayed()
 {
 	points_displayed = !points_displayed;
+	if (points_displayed == true)
+	{
+		txt_points->show();
+	}
+	else {
+		txt_points->hide();
+	}
 }
 
 void MyWindow::toggle_guess_guaranteed()
 {
 	guess_guaranteed_displayed = !guess_guaranteed_displayed;
+	if (guess_guaranteed_displayed == true)
+	{
+		box_guess_guaranteed->show();
+	}
+	else {
+		box_guess_guaranteed->hide();
+	}
 }
 
