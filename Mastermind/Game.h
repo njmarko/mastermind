@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 03.11.2020
+// Date        : 11.17.2020
 // Copyright   : GPLv3
 // Description : Class that represents a main game
 //============================================================================
@@ -42,6 +42,13 @@ using std::vector;
 */
 #define POINTS_DECREMENT 3
 
+/**
+* Starting number of points that will be decremented from the total number of points
+* after each incorrect guess when there is only one possible combination remaining.
+* Decrement will be reduce for each subsequent wrong guess.
+*/
+#define POINTS_DECREMENT_V2 5
+
 
 /**
 * This class represents the game of mastermind.
@@ -78,6 +85,12 @@ public:
 	* @returns int number of the current sign in the combination.
 	*/
 	int get_curr_col() const;
+
+	/**
+	* Get the current decrement value.
+	* @returns int number that will be decremented after a wrong guess with only one combination remaining.
+	*/
+	int get_points_decr_v2() const;
 
 	/**
 	* Removes all the signs from the current guess.
@@ -150,6 +163,11 @@ public:
 	* @returns int points that can be won if the combination is guessed
 	*/
 	int get_points() const;
+
+	/**
+	* Updates the points decrement by decreasing its value by 1 in this case
+	*/
+	void update_points_decrement_v2();
 private:
 	/**
 	* Correct combination that has to be guessed.
@@ -185,5 +203,11 @@ private:
 	* Indicator for when only one possible combination is left.
 	*/
 	bool one_comb_remaining;
+
+	/**
+	* Number of points that will be reduced after each wrong guess when there is only one combination remaining.
+	* It changes on successive misstakes and takes the following values: 5,4,3,2,1
+	*/
+	int points_decr_v2;
 
 };

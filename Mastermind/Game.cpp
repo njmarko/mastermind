@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : Game.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 03.11.2020
+// Date        : 11.17.2020
 // Copyright   : GPLv3
 // Description : Implementation of the Game class
 //============================================================================
@@ -9,7 +9,7 @@
 
 #include "Game.h"
 
-Game::Game():game_ended(false),possibilities(NUM_SIGNS,NUM_POSITIONS),points(POINTS_START),one_comb_remaining(false)
+Game::Game():game_ended(false),possibilities(NUM_SIGNS,NUM_POSITIONS),points(POINTS_START),one_comb_remaining(false), points_decr_v2(POINTS_DECREMENT_V2)
 {
 	srand((unsigned)time(0));
 	for (int i = 0; i < 4; ++i) {
@@ -43,6 +43,11 @@ int Game::get_curr_row() const
 int Game::get_curr_col() const
 {
 	return guess_comb.get_size();
+}
+
+int Game::get_points_decr_v2() const
+{
+	return points_decr_v2;
 }
 
 void Game::clear_guess()
@@ -117,12 +122,23 @@ Combination Game::get_correct_comb() const
 void Game::update_points()
 {
 	if (one_comb_remaining && !is_finished()) {
-		points -= POINTS_DECREMENT;
+		//version 1 of the scoring where 3 was subtracted after 
+		//every wrong guess when there was only one combination remaining
+		//points -= POINTS_DECREMENT;
+
+		//version 2 of scoring where decrement starts at 5 and steadily decreases
+		points -= points_decr_v2;
+		update_points_decrement_v2();
 	}
 }
 
 int Game::get_points() const
 {
 	return points;
+}
+
+void Game::update_points_decrement_v2()
+{
+	--points_decr_v2;
 }
 
