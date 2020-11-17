@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 03.11.2020
+// Date        : 11.17.2020
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -32,6 +32,9 @@
 #define W_OFFSET	20
 /* Height offset for all the elements. [unused]*/
 #define H_OFFSET	20
+
+/* Height of the menu bar*/
+#define MENU_H 25
 
 /* Point that represents the midle point of the screen where the window should be placed.*/
 const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (Fl::h() - WINDOW_H) / 2);
@@ -184,6 +187,8 @@ private:
 
 	//callback function for toggling displaying of elements on the screen
 	static void cb_remaining_combs(Fl_Widget*, void*);
+	static void cb_points_displayed(Fl_Widget*, void*);
+	static void cb_guess_guaranteed(Fl_Widget*, void*);
 
 	/**
 	* Value that determines if nubmer of remaining combinations 
@@ -263,5 +268,15 @@ private:
 	* Toggles if the number of remaining combinations is shown.
 	*/
 	void toggle_num_combs();
+
+	/**
+	* Toggles if the number of points that will be won is shown.
+	*/
+	void toggle_points_displayed();
+
+	/**
+	* Toggles if the indicator for when the guess is guaranteed is shown.
+	*/
+	void toggle_guess_guaranteed();
 };
 

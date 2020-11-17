@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 03.11.2020
+// Date        : 11.17.2020
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -39,6 +39,16 @@ void MyWindow::cb_quit(Fl_Widget *, void *)
 void MyWindow::cb_remaining_combs(Fl_Widget * w, void *)
 {
 	reference_to<MyWindow>(w->parent()).toggle_num_combs();
+}
+
+void MyWindow::cb_points_displayed(Fl_Widget * w, void *)
+{
+	reference_to<MyWindow>(w->parent()).toggle_points_displayed();
+}
+
+void MyWindow::cb_guess_guaranteed(Fl_Widget * w, void *)
+{
+	reference_to<MyWindow>(w->parent()).toggle_guess_guaranteed();
 }
 
 void MyWindow::create_fltk_elements()
@@ -128,7 +138,7 @@ void MyWindow::create_fltk_elements()
 	}
 
 	//menu bar
-	menu_bar = new Fl_Menu_Bar(0, 0, WINDOW_W, 25);
+	menu_bar = new Fl_Menu_Bar(0, 0, WINDOW_W, MENU_H);
 	menu_bar->add("File/New Game", FL_CTRL + 'n', cb_new_game);
 	menu_bar->add("File/Quit", FL_CTRL + 'q', cb_quit);
 	menu_bar->add("Options/Show Remaining", FL_CTRL + 's', cb_remaining_combs);
@@ -432,5 +442,15 @@ void MyWindow::refresh_guess_guaranteed()
 void MyWindow::toggle_num_combs()
 {
 	num_comb_displayed = !num_comb_displayed;
+}
+
+void MyWindow::toggle_points_displayed()
+{
+	points_displayed = !points_displayed;
+}
+
+void MyWindow::toggle_guess_guaranteed()
+{
+	guess_guaranteed_displayed = !guess_guaranteed_displayed;
 }
 
