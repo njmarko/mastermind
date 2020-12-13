@@ -79,6 +79,25 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /* Height of the controll buttons.*/
 #define CTRL_BTN_H 50
 
+/* Y axis starting position for the correctness indicators.*/
+#define TXT_FINISHED_ROW 350
+
+/* X axis starting position for the correctness indicators.[unused]*/
+#define TXT_FINISHED_COL 52
+
+/*Height of the square box for the finished message.*/
+#define BOX_FINISHED_SIZE_H 64
+
+/*Width of the square box for the finished message.*/
+#define BOX_FINISHED_SIZE_W 256
+
+/*Message that will be displayed when you win.*/
+#define MSG_WIN "YOU WON!"
+
+/*Message that will be displayed when you lose.*/
+#define MSG_LOSS "YOU LOST"
+
+
 /* Y axis position for the correct combination.*/
 #define SIGN_CORRECT_ROW_START 400 
 
@@ -177,6 +196,9 @@ private:
 	
 	//number of points that can be won
 	Fl_Box* txt_points;
+
+	//Message for winnning or losing
+	Fl_Box* txt_finished_msg;
 
 	//one guess remaining indicator for when the guess is guaranteed.
 	Fl_Box* box_guess_guaranteed;
@@ -287,5 +309,10 @@ private:
 	* Toggles if the indicator for when the guess is guaranteed is shown.
 	*/
 	void toggle_guess_guaranteed();
+
+	/**
+	* Displays either the winning or losing message
+	*/
+	void displayed_finished_msg(bool finished, bool is_won);
 };
 

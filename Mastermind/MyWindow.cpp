@@ -122,6 +122,7 @@ void MyWindow::create_fltk_elements()
 	btn_clear->callback(cb_clear_guess);
 	btn_enter->callback(cb_enter_guess);
 	btn_new_game->callback(cb_new_game);
+	//btn_clear->deactivate();
 
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
@@ -139,6 +140,11 @@ void MyWindow::create_fltk_elements()
 	{
 		box_guess_guaranteed->hide();
 	}
+
+	txt_finished_msg = new Fl_Box(SIGN_COL_START + SPACING, TXT_FINISHED_ROW, BOX_FINISHED_SIZE_W, BOX_FINISHED_SIZE_H);
+	txt_finished_msg->copy_label(MSG_WIN);
+	txt_finished_msg->tooltip("The game is finished. You can start a new game to play again.");
+	txt_finished_msg->hide();
 
 	//menu bar
 	menu_bar = new Fl_Menu_Bar(MENU_X, MENU_Y, WINDOW_W, MENU_H);
@@ -174,7 +180,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	num_comb_displayed(true),
 	points_displayed(true),
 	guess_guaranteed_displayed(true),
-	menu_bar(nullptr)
+	menu_bar(nullptr),
+	txt_finished_msg(nullptr)
 {
 	create_fltk_elements();
 	resizable(NULL);
@@ -211,6 +218,8 @@ MyWindow::~MyWindow()
 	delete box_guess_guaranteed;
 
 	delete menu_bar;
+
+	delete txt_finished_msg;
 
 	clear_screen();
 }
@@ -249,17 +258,23 @@ void MyWindow::clear_screen()
 
 	refresh_points();
 	refresh_guess_guaranteed();
+
+	// hide the winning message
+	displayed_finished_msg(game.is_finished(),false);
+
 	redraw();
 }
 
 void MyWindow::clear_curr_guess()
 {
-	for (int i = 0; i < game.get_curr_col(); i++)
-	{
-		Fl::delete_widget(elements[elements.size() - 1]);
-		elements.pop_back();
-	}	
-	game.clear_guess();
+	if (!game.is_finished()) {
+		for (int i = 0; i < game.get_curr_col(); i++)
+		{
+			Fl::delete_widget(elements[elements.size() - 1]);
+			elements.pop_back();
+		}
+		game.clear_guess();
+	}
 }
 
 void MyWindow::enter_curr_guess()
@@ -267,12 +282,12 @@ void MyWindow::enter_curr_guess()
 	if (game.is_finished() || game.get_curr_col() < NUM_POSITIONS) {
 		return;
 	}
-	if (game.evaluate_guess()) {
+	bool guessed_correctly = game.evaluate_guess();
+	if (guessed_correctly) {
 		add_remaining_num();
 		add_guess_indicators();
 		game.enter_guess();
 		add_correct_comb();
-		
 	}
 	else {
 		add_remaining_num();
@@ -282,6 +297,8 @@ void MyWindow::enter_curr_guess()
 			add_correct_comb();
 		}
 	}
+	displayed_finished_msg(game.is_finished(),guessed_correctly);
+
 	refresh_points();
 	refresh_guess_guaranteed();
 }
@@ -503,6 +520,25 @@ void MyWindow::toggle_guess_guaranteed()
 	}
 	else {
 		box_guess_guaranteed->hide();
+	}
+}
+
+void MyWindow::displayed_finished_msg(bool finished, bool is_won)
+{
+	if (finished)
+	{
+		if (is_won)
+		{
+			txt_finished_msg->copy_label(MSG_WIN);
+		}
+		else
+		{
+			txt_finished_msg->copy_label(MSG_LOSS);
+		}
+		txt_finished_msg->show();
+	}
+	else {
+		txt_finished_msg->hide();
 	}
 }
 
