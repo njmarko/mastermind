@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 11.17.2020
+// Date        : 02.26.2021
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -21,6 +21,7 @@
 #include <FL\Fl_Menu_Bar.H>
 #include <FL\Fl_Menu_Button.H>
 #include <FL\Fl_Menu_Item.H>
+#include <FL\fl_message.H>
 #include <string>
 
 
@@ -233,6 +234,10 @@ private:
 	static void cb_remaining_combs(Fl_Widget*, void*);
 	static void cb_points_displayed(Fl_Widget*, void*);
 	static void cb_guess_guaranteed(Fl_Widget*, void*);
+
+	//Callback functions for help menu
+	static void cb_game_rules(Fl_Widget*, void*);
+	static void cb_about(Fl_Widget*, void*);
 
 	/**
 	* Value that determines if nubmer of remaining combinations 

@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 11.17.2020
+// Date        : 02.26.2021
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -49,6 +49,29 @@ void MyWindow::cb_points_displayed(Fl_Widget * w, void *)
 void MyWindow::cb_guess_guaranteed(Fl_Widget * w, void *)
 {
 	reference_to<MyWindow>(w->parent()).toggle_guess_guaranteed();
+}
+
+void MyWindow::cb_game_rules(Fl_Widget *, void *)
+{
+	fl_message("Goal of the game is to guess the combination of 4 signs that was generated randomly.\
+		\nThere are 6 signs that can be placed at any position in the combination and the signs\
+		\ncan be repeated.\
+		\n\nYou have 6 tries to guess the combination by choosing a 4 sign combination each time.\
+		\nAfter you enter the guess red indicators will inform you how many signs are in the right places\
+		\nand yellow indicators will tell you how many signs you guessed correctly but are not at the \
+		\nright places.\
+		\n\nIf there is only one possible combination remaining, green indicator will turn on to signal\
+		\nthat you can deduce what the correct combination is with hundred percent certanty.\
+		\n\nThe number of points you can win by guessing correctly at any point is displayed on the screen.\
+		\nNumber of points you can get starts at 15, and is only reduced if you fail to guess correctly\
+		\nwhen there is only one possible combination remaining. Points are reduced by 5,4,3,2,1 points\
+		\nin that order for each subsequent wrong guess.\
+		");
+}
+
+void MyWindow::cb_about(Fl_Widget *, void *)
+{
+	fl_message("Created by: Marko Njegomir");
 }
 
 void MyWindow::create_fltk_elements()
@@ -164,6 +187,8 @@ void MyWindow::create_fltk_elements()
 	menu_bar->add("View/Hide Remaining Combinations", FL_CTRL + 's', cb_remaining_combs, (void*)this, FL_MENU_TOGGLE);
 	menu_bar->add("View/Hide Guess Guaranteed", FL_CTRL + 'g', cb_guess_guaranteed, (void*)this, FL_MENU_TOGGLE);
 	menu_bar->add("View/Hide Points", FL_CTRL + 'p', cb_points_displayed, (void*)this, FL_MENU_TOGGLE);
+	menu_bar->add("Help/Game Rules", FL_CTRL + 'r', cb_game_rules);
+	menu_bar->add("Help/About", FL_CTRL + 'a', cb_about);
 
 
 	end();
@@ -366,7 +391,7 @@ void MyWindow::add_remaining_num()
 	begin();
 	Fl_Box* txt = new Fl_Box(TXT_COL_START, TXT_ROW_START + SPACING * game.get_curr_row() - 1, BOX_SIZE, BOX_SIZE);
 	txt->copy_label(to_string(remaining).c_str());
-	txt->tooltip("Number of combinations remaining that can possible be correct.");
+	txt->tooltip("Number of combinations remaining that can possibly be correct.");
 	elements.push_back(txt);
 	combinations_remaining_numbers.push_back(txt);
 	if (!num_comb_displayed) {
