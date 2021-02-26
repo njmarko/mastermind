@@ -55,6 +55,10 @@ void MyWindow::create_fltk_elements()
 {
 	begin();
 
+	//background image
+	box_background = new Fl_Box(0, 0, WINDOW_W, WINDOW_H);
+	box_background->image(png_background);
+
 	//signs
 	btn_smiley = new Fl_Button(BUTTON_COL, BUTTON_ROW, BUTTON_W, BUTTON_H);
 	btn_club = new Fl_Button(BUTTON_COL + BUTTON_W, BUTTON_ROW, BUTTON_W, BUTTON_H);
@@ -124,6 +128,12 @@ void MyWindow::create_fltk_elements()
 	btn_new_game->callback(cb_new_game);
 	//btn_clear->deactivate();
 
+	//btn colors
+	btn_clear->color(FL_WHITE);
+	btn_enter->color(FL_WHITE);
+	btn_new_game->color(FL_WHITE);
+
+
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
 	txt_points->copy_label(to_string(game.get_points()).c_str());
@@ -148,11 +158,13 @@ void MyWindow::create_fltk_elements()
 
 	//menu bar
 	menu_bar = new Fl_Menu_Bar(MENU_X, MENU_Y, WINDOW_W, MENU_H);
+	menu_bar->color(FL_WHITE);
 	menu_bar->add("File/New Game", FL_CTRL + 'n', cb_new_game);
 	menu_bar->add("File/Quit", FL_CTRL + 'q', cb_quit);
 	menu_bar->add("View/Hide Remaining Combinations", FL_CTRL + 's', cb_remaining_combs, (void*)this, FL_MENU_TOGGLE);
 	menu_bar->add("View/Hide Guess Guaranteed", FL_CTRL + 'g', cb_guess_guaranteed, (void*)this, FL_MENU_TOGGLE);
 	menu_bar->add("View/Hide Points", FL_CTRL + 'p', cb_points_displayed, (void*)this, FL_MENU_TOGGLE);
+
 
 	end();
 }
@@ -177,6 +189,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_star(new Fl_PNG_Image("../resources/star.png")),
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
+	png_background(new Fl_PNG_Image("../resources/background.png")),
 	num_comb_displayed(true),
 	points_displayed(true),
 	guess_guaranteed_displayed(true),

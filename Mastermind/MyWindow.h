@@ -73,9 +73,9 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /* Y axis starting position for the controll buttons.*/
 #define CTRL_BTN_ROW_START 500
 /* X axis starting position for the controll buttons.*/
-#define CTRL_BTN_COL_START 317
+#define CTRL_BTN_COL_START 312
 /* Width of the controll buttons.*/
-#define CTRL_BTN_W 100
+#define CTRL_BTN_W 96
 /* Height of the controll buttons.*/
 #define CTRL_BTN_H 50
 
@@ -193,6 +193,12 @@ private:
 	//indicators for the correctness of the guess.
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
+
+	//background image
+	Fl_PNG_Image* png_background;
+
+	//background box
+	Fl_Box* box_background;
 	
 	//number of points that can be won
 	Fl_Box* txt_points;
