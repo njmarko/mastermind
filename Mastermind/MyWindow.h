@@ -97,6 +97,9 @@ const Point scr_middle_placement(Fl::x() + (Fl::w() - WINDOW_W) / 2, Fl::y() + (
 /*Message that will be displayed when you lose.*/
 #define MSG_LOSS "YOU LOST"
 
+/*Message that will be displayed when you lose.*/
+#define MSG_FINISHED_OFFSET 30
+
 
 /* Y axis position for the correct combination.*/
 #define SIGN_CORRECT_ROW_START 400 

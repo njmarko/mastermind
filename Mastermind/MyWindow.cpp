@@ -145,13 +145,13 @@ void MyWindow::create_fltk_elements()
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_remaining_many);
-	box_guess_guaranteed->tooltip("This indicator is red if there is only one possible correct combination remaining. It is yellow when there are multiple combinations remaining that can possibly be correct.");
+	box_guess_guaranteed->tooltip("This indicator is green if there is only one possible correct combination remaining. It is dark when there are multiple combinations remaining that can possibly be correct.");
 	if (!guess_guaranteed_displayed)
 	{
 		box_guess_guaranteed->hide();
 	}
 
-	txt_finished_msg = new Fl_Box(SIGN_COL_START + SPACING, TXT_FINISHED_ROW, BOX_FINISHED_SIZE_W, BOX_FINISHED_SIZE_H);
+	txt_finished_msg = new Fl_Box(SIGN_COL_START + MSG_FINISHED_OFFSET, TXT_FINISHED_ROW, BOX_FINISHED_SIZE_W, BOX_FINISHED_SIZE_H);
 	txt_finished_msg->copy_label(MSG_WIN);
 	txt_finished_msg->tooltip("The game is finished. You can start a new game to play again.");
 	txt_finished_msg->hide();
