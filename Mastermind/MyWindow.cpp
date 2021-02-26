@@ -144,7 +144,7 @@ void MyWindow::create_fltk_elements()
 	}
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
-	box_guess_guaranteed->image(png_incorrect);
+	box_guess_guaranteed->image(png_remaining_many);
 	box_guess_guaranteed->tooltip("This indicator is red if there is only one possible correct combination remaining. It is yellow when there are multiple combinations remaining that can possibly be correct.");
 	if (!guess_guaranteed_displayed)
 	{
@@ -190,6 +190,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_correct(new Fl_PNG_Image("../resources/ind_correct_s.png")),
 	png_incorrect(new Fl_PNG_Image("../resources/ind_incorrect_s.png")),
 	png_background(new Fl_PNG_Image("../resources/background.png")),
+	png_remaining_one(new Fl_PNG_Image("../resources/ind_remaining_one.png")),
+	png_remaining_many(new Fl_PNG_Image("../resources/ind_remaining_many.png")),
 	num_comb_displayed(true),
 	points_displayed(true),
 	guess_guaranteed_displayed(true),
@@ -489,10 +491,10 @@ void MyWindow::refresh_points()
 void MyWindow::refresh_guess_guaranteed()
 {
 	if (game.get_num_possibilities() == 1) {
-		box_guess_guaranteed->image(png_correct);
+		box_guess_guaranteed->image(png_remaining_one);
 	}
 	else {
-		box_guess_guaranteed->image(png_incorrect);
+		box_guess_guaranteed->image(png_remaining_many);
 	}
 	box_guess_guaranteed->redraw();
 }

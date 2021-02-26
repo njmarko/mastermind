@@ -194,6 +194,10 @@ private:
 	Fl_PNG_Image* png_correct;
 	Fl_PNG_Image* png_incorrect;
 
+	//indicators for guess guaranteed
+	Fl_PNG_Image* png_remaining_one;
+	Fl_PNG_Image* png_remaining_many;
+
 	//background image
 	Fl_PNG_Image* png_background;
 
