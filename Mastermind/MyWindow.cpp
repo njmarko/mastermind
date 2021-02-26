@@ -71,7 +71,11 @@ void MyWindow::cb_game_rules(Fl_Widget *, void *)
 
 void MyWindow::cb_about(Fl_Widget *, void *)
 {
-	fl_message("Created by: Marko Njegomir");
+	fl_message("MASTERMIND\
+		\n\n© 2021 Marko Njegomir\
+		\n\nProject can be found at:\
+		\nhttps://github.com/njmarko/mastermind\
+		");
 }
 
 void MyWindow::create_fltk_elements()
