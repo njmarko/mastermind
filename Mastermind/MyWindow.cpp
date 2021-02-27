@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.26.2021
+// Date        : 02.27.2021
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -64,8 +64,8 @@ void MyWindow::cb_game_rules(Fl_Widget *, void *)
 		\nthat you can deduce what the correct combination is with hundred percent certanty.\
 		\n\nThe number of points you can win by guessing correctly at any point is displayed on the screen.\
 		\nNumber of points you can get starts at 15, and is only reduced if you fail to guess correctly\
-		\nwhen there is only one possible combination remaining. Points are reduced by 5,4,3,2,1 points\
-		\nin that order for each subsequent wrong guess.\
+		\nwhen there is only one possible combination remaining. Points are reduced by [5,4,3,2] points\
+		\n(in that order) for each subsequent wrong guess.\
 		");
 }
 
@@ -164,7 +164,7 @@ void MyWindow::create_fltk_elements()
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
 	txt_points->copy_label(to_string(game.get_points()).c_str());
-	txt_points->tooltip("Number of points the player can win if they guess correctly. It decreases by 5,4,3,2,1 points for each wrong guess only when there is only one possible combination remaining.");
+	txt_points->tooltip("Number of points the player can win if they guess correctly. When there is only one combination remaining that can possibly be correct, points will be reduced for each subsequent wrong guess by [5,4,3,2] points (in that order).");
 	if (!points_displayed)
 	{
 		txt_points->hide();
@@ -194,7 +194,7 @@ void MyWindow::create_fltk_elements()
 	menu_bar->add("Help/Game Rules", FL_CTRL + 'r', cb_game_rules);
 	menu_bar->add("Help/About", FL_CTRL + 'a', cb_about);
 
-
+	this->icon(png_smiley);
 	end();
 }
 
