@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mastermind", "SortingFlights.vcxproj", "{D50FD812-5B85-409B-B37C-8B948C5D4A8E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mastermind", "Mastermind.vcxproj", "{D50FD812-5B85-409B-B37C-8B948C5D4A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,7 @@ Global
 		{D50FD812-5B85-409B-B37C-8B948C5D4A8E}.Release|x64.Build.0 = Release|x64
 		{D50FD812-5B85-409B-B37C-8B948C5D4A8E}.Release|x86.ActiveCfg = Release|Win32
 		{D50FD812-5B85-409B-B37C-8B948C5D4A8E}.Release|x86.Build.0 = Release|Win32
+		{D50FD812-5B85-409B-B37C-8B948C5D4A8E}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
