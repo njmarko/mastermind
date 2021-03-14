@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.h
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.26.2021
+// Date        : 03.14.2021
 // Copyright   : GPLv3
 // Description : Class that inherits Window like Simple_window does
 //============================================================================
@@ -23,7 +23,7 @@
 #include <FL\Fl_Menu_Item.H>
 #include <FL\fl_message.H>
 #include <string>
-
+#include <FL\Fl_BMP_Image.H>
 
 /* Width of the main window.*/
 #define WINDOW_W	550
@@ -204,6 +204,9 @@ private:
 
 	//background image
 	Fl_PNG_Image* png_background;
+
+	//App icon
+	Fl_BMP_Image* bmp_icon;
 
 	//background box
 	Fl_Box* box_background;

@@ -1,7 +1,7 @@
 //============================================================================
 // Name        : MyWindow.cpp
 // Author      : Marko Njegomir sw-38-2018
-// Date        : 02.27.2021
+// Date        : 03.14.2021
 // Copyright   : GPLv3
 // Description : Implementation of MyWindow class
 //============================================================================
@@ -164,7 +164,9 @@ void MyWindow::create_fltk_elements()
 	//adds the number of points player can win
 	txt_points = new Fl_Box(TXT_POINTS_COL, TXT_POINTS_ROW, BOX_SIZE, BOX_SIZE);
 	txt_points->copy_label(to_string(game.get_points()).c_str());
-	txt_points->tooltip("Number of points the player can win if they guess correctly. When there is only one combination remaining that can possibly be correct, points will be reduced for each subsequent wrong guess by [5,4,3,2] points (in that order).");
+	txt_points->tooltip("Number of points the player can win if they guess correctly.\
+ When there is only one combination remaining that can possibly be correct,\
+ points will be reduced for each subsequent wrong guess by [5,4,3,2] points (in that order).");
 	if (!points_displayed)
 	{
 		txt_points->hide();
@@ -172,7 +174,8 @@ void MyWindow::create_fltk_elements()
 
 	box_guess_guaranteed = new Fl_Box(IND_COL_START, SIGN_CORRECT_ROW_START, BOX_SIZE, BOX_SIZE);
 	box_guess_guaranteed->image(png_remaining_many);
-	box_guess_guaranteed->tooltip("This indicator is green if there is only one possible correct combination remaining. It is dark when there are multiple combinations remaining that can possibly be correct.");
+	box_guess_guaranteed->tooltip("This indicator is green if there is only one possible correct combination remaining.\
+ It is dark when there are multiple combinations remaining that can possibly be correct.");
 	if (!guess_guaranteed_displayed)
 	{
 		box_guess_guaranteed->hide();
@@ -194,7 +197,8 @@ void MyWindow::create_fltk_elements()
 	menu_bar->add("Help/Game Rules", FL_CTRL + 'r', cb_game_rules);
 	menu_bar->add("Help/About", FL_CTRL + 'a', cb_about);
 
-	this->icon(png_smiley);
+	this->icon(bmp_icon);
+	this->default_icon(bmp_icon);
 	end();
 }
 
@@ -221,6 +225,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	png_background(new Fl_PNG_Image("../resources/background.png")),
 	png_remaining_one(new Fl_PNG_Image("../resources/ind_remaining_one.png")),
 	png_remaining_many(new Fl_PNG_Image("../resources/ind_remaining_many.png")),
+	bmp_icon(new Fl_BMP_Image("../resources/logo.bmp")),
 	num_comb_displayed(true),
 	points_displayed(true),
 	guess_guaranteed_displayed(true),
@@ -256,6 +261,11 @@ MyWindow::~MyWindow()
 	
 	delete png_correct;
 	delete png_incorrect;
+
+	delete png_background;
+	delete png_remaining_many;
+	delete png_remaining_one;
+	delete bmp_icon;
 
 	delete txt_points;
 
