@@ -1,4 +1,10 @@
 # Mastermind
+
+<p align="center">
+  <img src="/resources/readme/mastermind_legend.jpg">
+  <p align="center">Ilustration 1 - Layout of the Mastermind game window.</p>
+</p>
+
 This is a Mastermind game with changed rules so that all possible combinations are calculated and the scoring is adjusted so it doesn't punish the correct lines of play. To make the scoring less based on luck and more on skill and correct reasoning, the ammount of points that can be won is only reduced if there is one possible combination remaining, and the player makes the wrong guess. 
 
 This scoring allows players who played correctly but who didn't get lucky because they encountered the worst case scenario for their guesses to still get the full ammount of points. If the player gets lucky, and guesses before the number of possible combinations is reduced to one, he is still awarded the full ammount of points. Points that can be won are only reduced if the correct guess can be made with 100% certanty because only one possible combination remains, and the player fails to make the guess.
@@ -12,20 +18,20 @@ Current scoring for the mastermind game in "Slagalica" quiz in Serbia ([Scoring 
 * 15 points if the player guesses correctly on the third or fourth try
 * 10 points if the player guesses correctly on the fifth or sixth try.
 
-This means that the player will often get the full 20 points only if he gets lucky and guesses correctly in the first 2 tries. Only case where there is only one possible combination remaining after the first try is if the first guess consists of only two signs that appear two times each in the combination, and the indicators show that all the signs are not at the correct places (Ilustration 1). Chance of this happening is 1/1296 and it is the same chance as guessing the correct combination outright on the first try.
+This means that the player will often get the full 20 points only if he gets lucky and guesses correctly in the first 2 tries. Only case where there is only one possible combination remaining after the first try is if the first guess consists of only two signs that appear two times each in the combination, and the indicators show that all the signs are not at the correct places (Ilustration 2). Chance of this happening is 1/1296 and it is the same chance as guessing the correct combination outright on the first try.
 
 <p align="center">
   <img src="/resources/readme/guess_certain_first_try.jpg">
-  <p align="center">Ilustration 1 - Only one possible combination remains after the first try.</p>
+  <p align="center">Ilustration 2 - Only one possible combination remains after the first try.</p>
 </p>
 
 ## Problem with standard scoring in Mastermind
 
-Problem with the current scoring is that is punishes players who play correctly but don't get lucky to make the correct guess early. In the case that the player uses the Knuth method that guarantees the correct guess in 5 tries or less, if the guess happens on the fifth try, he would get the minimum ammount of points (Ilustration 2). This is why standars scoring punishes correct play and awards lucky players.
+Problem with the current scoring is that is punishes players who play correctly but don't get lucky to make the correct guess early. In the case that the player uses the Knuth method that guarantees the correct guess in 5 tries or less, if the guess happens on the fifth try, he would get the minimum ammount of points (Ilustration 3). This is why standars scoring punishes correct play and awards lucky players.
 
 <p align="center">
   <img src="/resources/readme/knuth_method_worst_case.jpg">
-  <p align="center">Ilustration 2 - Unlucky scenario when the Knuth method is used.</p>
+  <p align="center">Ilustration 3 - Unlucky scenario when the Knuth method is used.</p>
 </p>
 
 ## Proposed alternative scoring
@@ -41,18 +47,18 @@ Alternative scoring could start at 15 points. Points could be reduced in the fol
 * 3rd missed certain guess = -3 points
 * 4th missed certain guess = -2 points.
 
-Maximum possible reduction would be if the guess is certain on the second try, but the player fails to make the correct guess every step of the way untill the last try (Ilustration 3).
+Maximum possible reduction would be if the guess is certain on the second try, but the player fails to make the correct guess every step of the way untill the last try (Ilustration 4). In this case he would end up winning only 1 point, because the points were reduced after 2nd, 3rd, 4th and 5th wrong try.
 
 <p align="center">
-  <img src="/resources/readme/guess_worst_case.jpg">
-  <p align="center">Ilustration 3 - Worst line of play that ends in a win.</p>
+  <img src="/resources/readme/worst_play.jpg">
+  <p align="center">Ilustration 4 - Worst line of play that ends in a win.</p>
 </p>
 
-This way the player can still get the maximum ammount of points if he plays correctly but gets unlucky and reduces the number of possible combinations down to 1 on the 4th or 5th guess, and makes the correct guess on the next try (Ilustration 4). 
+This way the player can still get the maximum ammount of points if he plays correctly but gets unlucky and reduces the number of possible combinations down to 1 on the 4th or 5th guess, and makes the correct guess on the next try (Ilustration 5). 
 
 <p align="center">
   <img src="/resources/readme/guess_worst_case.jpg">
-  <p align="center">Ilustration 4 - Unlucky scenario when the Knuth method is not used. </p>
+  <p align="center">Ilustration 5 - Unlucky scenario when the Knuth method is not used. </p>
 </p>
 
 
