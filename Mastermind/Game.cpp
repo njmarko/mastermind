@@ -11,10 +11,17 @@
 
 Game::Game():game_ended(false),possibilities(NUM_SIGNS,NUM_POSITIONS),points(POINTS_START),one_comb_remaining(false), points_decr_v2(POINTS_DECREMENT_V2)
 {
+	// Generates a random combination that needs to be guessed
 	srand((unsigned)time(0));
 	for (int i = 0; i < 4; ++i) {
 		correct_comb.add_sign(rand()%6);
 	}
+
+	// If you want to set your combination manually comment out the code above and uncomment the code below
+	//correct_comb.add_sign(Signs::SPADE);
+	//correct_comb.add_sign(Signs::SPADE);
+	//correct_comb.add_sign(Signs::STAR);
+	//correct_comb.add_sign(Signs::STAR);
 }
 
 Game::~Game()
