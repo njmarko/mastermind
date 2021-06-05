@@ -9,6 +9,20 @@ This is a Mastermind game with changed rules so that all possible combinations a
 
 This scoring allows players who played correctly but who didn't get lucky because they encountered the worst-case scenario for their guesses to still get the full amount of points. If the player gets lucky, and guesses before the number of possible combinations are reduced to one, he is still awarded the full amount of points. Scoring like this only punishes the player if he reasons incorrectly because the points that can be won are only reduced if the correct guess can be made with 100% certainty, and the player fails to make the correct guess.
 
+## Instalation
+
+Simply download the latest [release](https://github.com/njmarko/mastermind/releases) and install it on your computer. The icon will appear on the desktop and you can start playing.
+
+## Gameplay
+
+* You can hover over any element and a tooltip will appear.
+* Use `q, w, e, a, s, d` to input sings
+* Input the combination by pressing `enter`
+* Clear the combination by pressing `backspace`
+* Start a new game by pressing `n`
+* You can choose what elements are visible on the screen in the view dropdown menu
+* Help is available in the dropdown menu
+
 ## Standard scoring in Mastermind
 
 In a game of Mastermind with 6 signs and 4 positions, there are 1296 possible combinations for the correct guess initially. By making guesses and receiving feedback for the guesses, the number of possible combinations can be reduced down to one. At that point, it is possible to guess the combination correctly with 100% certainty if the person reasons correctly based on available information. If the Knuth method is used ([Knuth - The computer as mastermind](https://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf)) the worst-case scenario is that a person guesses correctly in five steps. If the player is lucky, he can of course make the correct guess at any point, well before he has reduced the number of possible remaining combinations to just one combination. 
@@ -36,7 +50,7 @@ The problem with the current scoring is that it punishes players who play correc
 
 ## Proposed alternative scoring
 
-It is fine for the player to get the full amount of points if he gets lucky and guesses the correct combination before he has reduced the number of possible combinations to one. These situations will happen because there is always a chance to guess correctly and the player should not be punished for being lucky. Player should also not be punished if he gets unlucky and guesses correctly when there is only one posslbe combination remaining.
+It is fine for the player to get the full amount of points if he gets lucky and guesses the correct combination before he has reduced the number of possible combinations to one. These situations will happen because there is always a chance to guess correctly and the player should not be punished for being lucky. The player should also not be punished if he gets unlucky and guesses correctly when there is only one possible combination remaining.
 
 But if the player reduces the number of possible combinations down to one, and he fails to make a correct guess on the next try, then the number of points that he can win should be reduced. 
 This point reduction is done because the player failed to reason correctly from the information that he has available.
