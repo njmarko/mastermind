@@ -230,7 +230,8 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 	points_displayed(true),
 	guess_guaranteed_displayed(true),
 	menu_bar(nullptr),
-	txt_finished_msg(nullptr)
+	txt_finished_msg(nullptr),
+	txt_points(nullptr)
 {
 	create_fltk_elements();
 	resizable(NULL);
@@ -240,7 +241,7 @@ MyWindow::MyWindow(Point xy, int width, int height, const string & title) :
 
 MyWindow::~MyWindow()
 {
-
+	clear_screen();
 	delete btn_smiley;
 	delete btn_club;
 	delete btn_spade;
@@ -275,7 +276,6 @@ MyWindow::~MyWindow()
 
 	delete txt_finished_msg;
 
-	clear_screen();
 }
 
 bool MyWindow::wait_for_button()
