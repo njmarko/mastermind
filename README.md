@@ -15,8 +15,8 @@ Simply download the latest [release](https://github.com/njmarko/mastermind/relea
 
 ## Gameplay
 
-* You can hover over any element and a tooltip will appear.
-* Use `q, w, e, a, s, d` to input sings
+* You can hover over any element and a tooltip will appear
+* Use `q, w, e, a, s, d` to input signs
 * Input the combination by pressing `enter`
 * Clear the combination by pressing `backspace`
 * Start a new game by pressing `n`
